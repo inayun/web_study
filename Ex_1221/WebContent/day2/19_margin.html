@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>margin(바깥쪽 여백)</title>
+<style>
+p{border : 5px solid blue;
+background: yellow;}
+
+/** 여백을 합치는게 아니라 공유함. 사이즈가 더 큰 마진으로 사용**/
+.box1{margin:20px;}
+.box2{margin:30px 50px;}
+.box3{margin:20px 50px 40px;}
+.box4{margin:40px 50px 60px 70px;}
+
+
+</style>
+</head>
+<body>
+	<p class="box1">상,하,좌,우</p>
+	<hr>
+	<p class="box2">상하, 좌우</p>
+	<hr>
+	<p class="box3">상, 좌우, 하</p>
+	<hr>
+	<p class="box4">상,우,하,좌</p>	
+	<hr>
+</body>
+</html>
