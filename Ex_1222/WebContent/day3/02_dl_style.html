@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dl 스타일 변경</title>
+
+	<style>
+		/*<dd>에 들어있던 마진이 없어짐
+		이렇게 시작하는 경우가 많음
+		초기화 개념
+		*/
+		*{ margin : 0; padding :0;}
+		
+		dl{
+			width:650px;
+			border:5px double gray;
+			margin: 0 auto; /*auto 가운데로 좌우정렬*/
+		}
+		
+		dt{
+			padding:15px 0;
+			text-align:center;
+			letter-spacing:10px;
+			border-bottom:10px purple solid;
+			background-color: pink;
+		}
+		dd{
+			text-indent : 10px;
+			padding: 10px;
+		}
+		dd.aa{
+			border-bottom : dashed 2px black;
+		}
+	</style>
+</head>
+<body>
+
+	<dl>
+		<dt>속담풀이</dt>
+		<!-- 앞에 마진이 자동으로 생성됨 -->
+		<dd class="aa">까마귀 날자 배 떨어진다</dd>
+		<dd>도둑이 제 발 저린다</dd>
+	</dl>
+
+</body>
+</html>
