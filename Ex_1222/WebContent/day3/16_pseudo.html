@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>슈도 클래스</title>
+
+	<style>
+		li{
+		list-style: none;
+		display: inline;
+		margin-left: 10px;
+		}
+		
+		
+		.m_ul li:nth-child(odd) {background-color:pink;}/*홀수번째에 적용*/
+		li:nth-child(even) {background-color:gray;}
+		li:nth-child(4n){color:white;} /*4의 배수*/
+		li:nth-child(6){color:white;} /*6번째에 적용*/
+		
+		li.five{color : blue;}
+		
+	</style>
+</head>
+<body>
+
+	<ul class="m_ul">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li class="five">5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+</body>
+</html>
