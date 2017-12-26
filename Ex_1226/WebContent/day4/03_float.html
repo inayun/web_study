@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+	<style>
+	
+		*{margin: 0; padding: 0;}
+		
+		body{
+		font-size: 20px;
+		margin: 10px;
+		}
+		.bbs{
+		width: 260px;
+		border: 2px solid #ccc;
+		padding: 10px;
+		background: #ffc;
+		overflow: hidden;
+		}
+		
+		li{
+		list-style: none;
+		}
+		
+		h2{
+		color: blue;
+		margin-bottom: 10px;
+		float:left;
+		}
+		
+		p{
+		float: right;
+		}
+		
+		ul{
+		/*float left와 right 사이로 비집고 들어가는 개체에게 clear:both 사용*/
+		clear:both;
+		}
+		
+		a{
+		color: gray;
+		text-decoration: none;
+		}
+		
+		p a{
+		color: navy;
+		}
+		
+		p a:hover {
+		text-decoration: underline;
+		color: maroon;
+		}
+	</style>
+
+<body>
+
+
+	<div class = "bbs">
+	
+		<h2>게시판 제목</h2>
+		<p><a href="#">더보기</a></p>
+		
+		<ul>
+			<li><a href="#">최근 게시물1</a></li>
+			<li><a href="#">최근 게시물2</a></li>
+			<li><a href="#">최근 게시물3</a></li>
+			<li><a href="#">최근 게시물4</a></li>
+			<li><a href="#">최근 게시물5</a></li>
+		</ul>
+	
+	</div>
+</body>
+</html>

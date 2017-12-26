@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>position</title>
+
+<style>
+	*{margin: 0; padding: 0;}
+	
+	body{
+		margin: 50px;
+		font: 20px "돋움", sans-serif;
+	}
+	.box{
+		width: 130px;
+		height: 80px;
+		border: 2px solid black;
+		position: relative; /*absolute를 자식으로 인지. 자식이 body에서 이제 이 부모를 기준으로 위치를 지정함*/
+	}
+	p{
+		width:130px;
+		height: 80px;
+		padding: 10px;
+	}
+	.red{
+		background: red;
+	}
+	
+	/* absolute 속성을 추가하면 위치값을 따로 적용해주지 않았을때 자기 마음대로 자리잡게 됨
+		위치의 기준이 body임!!!!!!!!!!!
+	*/
+	.blue{
+		background: blue;
+		position: absolute;
+		left:10px; 
+		top:30px;
+	}
+	.green{
+		background: green;
+	}
+</style>
+</head>
+<body>
+
+	<div class="box">
+		<p class="red">박스의 포지션 속성</p>
+		<p class="blue">박스의 포지션 속성</p>
+		<p class="green">박스의 포지션 속성</p>
+	</div>
+
+</body>
+</html>
