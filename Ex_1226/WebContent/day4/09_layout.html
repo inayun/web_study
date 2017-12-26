@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/reset.css" rel="stylesheet"/>
+
+<style>
+	
+	body{
+		width: 960px;
+		margin:0 auto;
+	}
+	
+	header{
+		position: relative;
+		height: 150px;
+	}
+	hgroup{
+		position: absolute;
+		left: 5px;
+		top: 10px;
+	}
+	
+	li{
+		float: left;
+	}
+	
+	ul{
+		overflow: hidden;
+	}
+	
+	#a1 li{
+		border-right: 1px solid gray;
+		border-top: 1px solid gray;
+		border-bottom: 1px solid gray;
+	}
+	#a1 li:first-child{
+		border-left: 1px solid gray;
+	}
+	#a1{
+		position: absolute;
+		right: 10px;
+		top: 3px;
+	}
+	
+	/* a태그를 블록요소로 변경하여 위아리에 패딩값을 준다*/
+	#a1 a{
+		display: block;
+		padding: 2px 10px;
+		color: #666;
+	}
+	
+	a{
+		text-decoration: none;
+	}
+	
+	#a1 a:hover{
+		color:white;
+		background: #999;
+	}
+	
+	#a2 a:hover{
+		color:white;
+		background: #999;
+	}
+	
+	#a2 li{
+		border-right: 1px solid gray;
+		border-top: 1px solid gray;
+		border-bottom: 1px solid gray;
+	}
+	#a2 li:first-child{
+		border-left: 1px solid gray;
+	}
+	#a2{
+		position: absolute;
+		right: 10px;
+		bottom:5px;
+	}
+	
+	#a2 a{
+		display: block;
+		padding: 4px 30px;
+		color: #666;
+	}
+	
+	
+	
+</style>
+
+</head>
+
+<body>
+
+
+	<header id="main">
+		
+		<!-- hgroup 태그는 제목과 부제목을 묶어주는 태그 -->
+		<hgroup>
+			<h1>Rint Development</h1>
+			<h2>HTML5 + CSS3</h2>		
+		</hgroup>
+		
+		
+		<nav id="a1">
+			<ul>
+				<li><a href="#">Web</a></li>
+				<li><a href="#">Mobile</a></li>
+				<li><a href="#">Game</a></li>
+				<li><a href="#">Simulation</a></li>
+				<li><a href="#">Data</a></li>
+			</ul>
+		</nav>
+		
+		<nav id="a2">
+				<ul>
+					<li><a href="#">HTML5</a></li>
+					<li><a href="#">CSS3</a></li>
+					<li><a href="#">JavaScript</a></li>
+					<li><a href="#">jQuery</a></li>
+					<li><a href="#">JSP</a></li>
+				</ul>
+			</nav>
+	</header>
+</body>
+</html>

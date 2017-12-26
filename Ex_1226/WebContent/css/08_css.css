@@ -2,8 +2,10 @@
 
 #container {
 	overflow: hidden;
-	margin: 10px 0;
+	margin: 10px 15px;
 	position: relative;
+	border: 1px solid red;
+	padding: 10px;
 }
 
 li{
@@ -11,8 +13,8 @@ li{
 }
 
 #head_logo img{
-	height:100px;
 	float:left;
+	height:100px;
 }
 
 #tail_logo img{

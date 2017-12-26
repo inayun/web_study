@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/reset.css" rel="stylesheet"/>
+
+<style>
+	table{
+		border-collapse: collapse;
+	}
+	th,td{
+		width: 1000px;
+	}
+	th{
+		height: 60px;
+	}
+	td{
+		height: 100px;
+	}
+	caption {
+		margin: 10px auto;
+		font-weight: bold;
+		font-size: 20px;
+}	
+	thead{
+		background: blue;
+		color:white;
+		border-bottom: 6px solid black;
+	}
+	
+	#lacation{
+		text-align: center;
+	}
+	
+	tbody .content td{
+		height: 130px;
+		padding-left: 15px;
+		padding-top: 15px;
+		vertical-align: top;
+	}
+</style>
+</head>
+<body>
+
+
+	<table border="1">
+	
+		<caption>업종별 모범거래기준 주요 내용 비교</caption>
+		
+		<thead>
+			<tr>
+				<th>구분</th>
+				<th>제빵(4월)</th>
+				<th>피자(7월)</th>
+				<th>치킨(9월)</th>
+				<th>커피(11월)</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr id="lacation">
+				<th>영업지역</th>
+				<td>500m</td>
+				<td>1,500m</td>
+				<td>800m</td>
+				<td>500m</td>
+			</tr>
+		
+			<tr class="content">
+				<th>광고</th>
+				<td>빵 고소해용</td>
+				<td>피자 맛나용</td>
+				<td>치킨느님 강림햇용</td>
+				<td>커피가 쌉쌀해요</td>
+			</tr>
+			
+			<tr class="content">
+				<th>대금지급</th>
+				<td>관련내용 없움</td>
+				<td>관련내용 없움</td>
+				<td>관련내용 없움</td>
+				<td>관련내용 없움</td>
+			</tr>
+		</tbody>
+	
+	</table>
+
+
+</body>
+</html>
