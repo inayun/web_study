@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>float(왼쪽, 오른쪽 정렬)</title>
+
+	<style>
+		*{
+		margin:0;
+		padding:0;	
+		}
+		
+		#container{
+		margin:10px auto; /* 위아래 10px 정렬, 좌우는 오토= 가운데정렬*/
+		width: 500px;
+		padding: 10px;
+		background: #fdd;
+		border: 5px solid red;
+		
+		/*자식이 float을 통해서 부모에게 영향받지 않고 공중에 떠 있다면  
+		부모 입장에서 'flaot을 해제'시키고 부모영역안에 자식을 묶어놔야함
+		
+		----float 해제법-----
+		1) overfloaw : hidden;
+		2) clear:both;
+		*/
+		overflow: inherit;
+		}
+		
+		h1{
+		text-align: center;
+		}
+		
+		.green{
+		width: 200px;
+		padding: 15px;
+		background: #dda;
+		float:left;
+		}
+		
+		.coffee{
+		width: 200px;
+		padding: 15px;
+		background: #ba7;
+		float:right;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="container">
+	
+		<h1>커피와 녹차</h1>
+		<div class = "green">
+		<p>녹차는 은은한 향을 좋아하는 사람들이 애용하는 차이다. 
+		녹차를 마실 줄 모르는 사람들은 티백들을 모두 뜯어 주전자에 넣고 끊이기도 하는데
+		강한 차의 향기도 견디기 힘들겠지만 보관도 힘들고 그때그때 방금 끓인 듯한 맛을 느끼지 못하게 되며 
+		진한 카페인 덕에 밤에 잠들기도 힘들 것이다.</p>
+		</div>
+		
+		<div class = "coffee">
+		<p>커피는 독한 향을 좋아하는 사람도 매우 좋아하며 심한 경우  태어나기 전부터 커피를 마신 듯 
+		강한 중독 증세를 보이는 경우가 많다. 심지어 원두를 씹어서 향에 자신을 담그는 사람도 있고 
+		설탕, 시럽 등 다른 조미를 절대로 허락하지 않는 오직 커피맛만을 고집하는 마니아들이 늘고 있다.</p>
+		</div>
+	
+	
+	</div>
+
+</body>
+</html>
