@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	/*특정타입만 골라서 스타일 적용가능!*/
+	input[type=text]{
+		background: red;
+	}
+	
+	input[type=password]{
+		background: blue;
+	}
+	#myID {
+		color : blue;
+	}
+</style>
+</head>
+<body>
+
+
+	<!-- method(전송방식) : get 공개 / post 비공개 -->
+	<form action="#" method="post">
+		<fieldset>
+			<legend>회원가입 페이지</legend>
+			
+			<p>
+				<label for="myID">아이디:</label>
+				<input type="text" size="15" id="myID"/>
+			</p>
+
+
+			<P>
+				<label for="myPWD">비밀번호:</label>
+				<input type="password" size="20" id="myPWD" placeholder="6자리 이상"
+				name="password"
+				/>
+			</P>	
+			
+			<p>
+			<!-- value는 서버와 연결되어 있을 때 실제로 전송될 값. name이 같은 radio끼리 단일체크 속성이 적용 -->
+				메일 수신여부:
+				<input type="radio" value="y" name="receive"/> 예
+				<input type="radio" value="n" name="receive"/> 아니오
+			</p>	
+			
+			<p>
+				관심분야
+				<input type="checkbox" value="html" name ="a"/> HTML
+				<input type="checkbox" value="css" name ="a"/> CSS
+				<input type="checkbox" value="js" name ="a"/> JS
+			</p>
+			
+			<p>
+				<input type="submit" value="전송" />
+				<input type="reset" value="취소" />
+				<input type="button" value="확인" />
+			</p>
+		</fieldset>
+		
+	</form>
+	
+	<hr>
+	
+	<form action="#" method="get">
+		<p>
+		
+			댓글달기<br>
+			<textarea rows="10" cols="20"></textarea>
+		</p>
+		
+		<p>
+			과목선택
+			<select>
+				<option value="html5">HTML5</option>
+				<option value="css">CSS3</option>
+				<option value="js">JS</option>
+				<option value="fb">DB</option>
+				
+			</select>
+		</p>
+		
+		
+		<P>
+			지역
+			<select>
+				<optgroup label="과일">
+					<option value="bc">사과</option>
+					<option value="bc">딸기</option>
+					<option value="bc">수박</option>
+				</optgroup>
+				
+				<optgroup label="야채">
+					<option value="bc">토마토</option>
+					<option value="bc">오이</option>
+					<option value="bc">당근</option>
+				</optgroup>
+			</select>
+		
+		</P>
+	</form>
+
+
+</body>
+</html>

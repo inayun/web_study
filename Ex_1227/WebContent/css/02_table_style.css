@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body{
+	background: #333;
+	color:#fff;
+}
+
+table{
+	width:90%;
+	border-collapse: collapse;
+	margin:0 auto;
+}
+
+caption{
+	margin-bottom: 20px;
+	font-size: 30px;
+}
+
+td,th{
+	padding: 15px;
+}
+
+th{
+	border-top: 1px solid #fff; 
+}
+
+th:nth-child(1),
+th:nth-child(2),
+th:nth-child(3){
+	border-right: 1px solid #fff;
+}
+
+th,td{
+	border-bottom: 1px solid #fff;	
+}
+
+td:nth-child(1),
+td:nth-child(2),
+td:nth-child(3){
+	border-right: 1px solid #fff;
+}
