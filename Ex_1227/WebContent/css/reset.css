@@ -23,7 +23,10 @@ hr{display:none;}
 /*구분선 목적이라 숨김*/
 
 
-a{line-decoration:none;}
+a{
+	text-decoration:none;
+	line-decoration:none;
+}
 
 /*화면 바깥으로 숨기고 싶은 태그들은 아이디나 클래스명을 skip으로 하여
 	한번에 처리할 수 있다. 숨길거면 안쓰면 되지 라고 생각하면 안되고, 

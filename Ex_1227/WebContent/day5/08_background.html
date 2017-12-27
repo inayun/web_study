@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<style>
+		div{
+			width : 800px;
+			height: 900px;
+			background: url(../img/photo9.jpg) no-repeat;
+			border: 1px solid red;
+		}
+		
+		.box1{
+			background-size : auto auto; /* 원본사이즈 사용! */
+		}
+		
+		.box2{
+			background-size: 300px auto; 
+		}
+		.box3{
+			background-size: 1200px 900px; 
+		}
+		.box4{
+		
+			/*이미지의 너비와 높이의 비율을 유지하면서 확대/축소 하는데
+			너비와 높이 중 긴 부분을 배경이미지가 들어간 요소의 너비나 높이에 맞춘다.
+			만약 배경의 너비가 길다면 요소의 너비에 맞춘다.*/
+			background-size: contain;
+		}
+		.box5{
+		
+			/*이미지의 너비와 높이의 비율을 유지하면서 확대/축소 하는데
+			너비와 높이 중 짧은 부분을 배경이미지가 들어간 요소의 너비나 높이에 맞춘다.
+			만약 배경의 너비가 짧다면 요소의 너비에 맞춘다.*/
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+
+
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+	<div class="box5"></div>
+	
+</body>
+</html>

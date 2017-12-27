@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<style>
+		div{width:100px; height: 100px; background: red;
+		transition-property:background,border-radius; /*적용할 속성들*/
+		transition-duration:1s; /*1초간 재생*/
+		transition-delay:1s; /*2초 후에 애니메이션 시작 */
+		
+		-webkit-transition-property:background,border-radius; /*적용할 속성들*/
+		-webkit-transition-duration:1s; /*1초간 재생*/
+		-webkit-transition-delay:1s; /*2초 후에 애니메이션 시작 */
+		
+		-moz-transition-property:background,border-radius; /*적용할 속성들*/
+		-moz-transition-duration:1s; /*1초간 재생*/
+		-moz-transition-delay:1s; /*2초 후에 애니메이션 시작 */
+		
+		/*
+		-webkit- : 크롬, 사파리, 돌핀 브라우저
+		-moz- : 파이어폭스
+		-o- : 오페라 브라우저
+		-ms- :익스플로러		
+		*/
+		}
+		
+		div:hover{background: blue; border-radius: 50px;}
+	</style>
+</head>
+<body>
+
+	
+	<p>도형에 마우스를 올려보세요</p>
+	
+	<div></div>
+</body>
+</html>
