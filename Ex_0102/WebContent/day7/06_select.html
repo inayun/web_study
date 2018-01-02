@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+
+	window.onload = function(){
+
+		var sido_arr = ['서울','대전','대구','부산'];
+		var sido = document.getElementById("sido");
+		
+		for(var i=0; i<sido_arr.length; i++){
+			//select 태그안에 자식 요소인 option을 만들자
+			
+			var option = document.createElement("option");
+			option.innerHTML = sido_arr[i];
+			
+			sido.appendChild(option);
+		}
+	}
+
+</script>
+</head>
+<body>
+
+	<p>
+		지역:
+		<select id="sido">
+			<option>지역을 선택</option>
+			
+		</select>
+	</p>
+
+</body>
+</html>

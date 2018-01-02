@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	table{
+		border-collapse: collapse;
+		width: 200px;
+	}
+	
+	ul li{
+		list-style: none;
+		float:left;
+		margin-left: 10px;
+		margin-bottom: 10px;
+	}
+	
+	input {
+		border-style: none;
+	}
+</style>
+
+<script type="text/javascript">
+
+	function cal(oper){
+		var su1 = document.getElementById("su1").value;
+		var su2 = document.getElementById("su2").value;
+		
+		
+		if(su1.trim()==''){
+			alert("su1에 값이 없습니다.");
+			return;
+		}
+		if(su2.trim()==''){
+			alert("su2에 값이 없습니다.");
+			return;
+		}
+		
+		var result = 0;
+		switch(oper){
+		
+		case '+':
+			result = Number(su1) + Number(su2);
+			break;
+			
+		case '-':
+			result = su1 - su2;
+			break;
+			
+		case '*':
+			result = su1 * su2;
+			break;
+			
+		case '/':
+			result = su2 == 0 ? 0 : (su1/su2).toFixed(2);
+			
+			break;
+		}
+		document.getElementById("result").value = result;
+	}
+	
+</script>
+
+</head>
+<body>
+
+
+	<table border = "1">
+	
+		<tr>
+			<th class="su">수1</th>
+			<td>
+				<input id="su1" />
+			</td>
+		</tr>
+		
+		<tr>
+			<th class="su">수2</th>
+			<td>
+				<input id="su2" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<ul>
+					<li><input type="button" value="+" onclick="cal('+')"/></li>
+					<li><input type="button" value="-" onclick="cal('-')"/></li>
+					<li><input type="button" value="*" onclick="cal('*')"/></li>
+					<li><input type="button" value="/" onclick="cal('/')"/></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr>
+			<th class="res">결과</th>
+			<td><input id="result" /></td>
+		</tr>
+	</table>
+	
+</body>
+</html>

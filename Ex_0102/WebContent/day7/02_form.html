@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form태그(컨트롤)를 사용하여 파라미터 전달 1</title>
+
+<script type="text/javascript">
+
+	function check1(){
+			//forms : 현재 html문서내의 form 들을 순차적으로 배열로 관리
+			var form = document.forms[0];
+			var m_id = form.id.value;
+			var m_pwd = form.pwd.value.trim();
+			
+			if(m_id == ''){
+				alert("아이디를 입력하세요.");
+				form.id.focus();
+				return;
+			}
+	
+			form.method = "POST";
+			form.action = "01_js.html";
+			form.submit();
+		
+	}
+</script>
+</head>
+<body>
+
+	<!-- 서버로 값을 전달하기 위한 form 태그 -->
+	
+	 <form>
+	 
+	 	<table border="1">
+	 		<tr>
+	 			<th>아이디</th>
+	 			<td><input name="id"/></td>
+	 		</tr>
+	 		
+	 		<tr>
+	 			<th>패스워드</th>
+	 			<td><input type="password" name="pwd"/></td>
+	 		</tr>
+	 		
+	 		<tr>
+	 			<td colspan="2">
+	 				<input type="button" value="전송1" onclick="check1()"/>
+	 			</td>
+	 		</tr>
+	 	
+	 	</table>
+	 
+	 </form>
+</body>
+</html>

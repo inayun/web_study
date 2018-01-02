@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	window.onload = function(){
+		
+		var year = document.getElementById("year");
+		for(var i=1970; i<=2018; i++){
+			var option = document.createElement("option");
+			option.innerHTML = i;
+			option.value = i;
+			year.appendChild(option);
+		}
+	}
+	
+	var last_day = 31;
+	
+	function yoon(){
+		//사용자가 선택한 연도가 윤년인지 체크
+		var year = document.getElementById("year").value;
+		
+		if(isYoon(year)){
+			last_day = 29;
+		} else {
+			last_day = 28;
+		}
+		
+		var month = document.getElementById("month");
+		
+		//이전의 옵션값을 모두 제거
+		var n = month.length;
+		while(n > 0) {
+			month.remove(0);
+			n--;
+		}
+
+		
+		for(var i=1; i<=12; i++){
+			var option = document.createElement("option");
+			option.innerHTML = i;
+			option.value = i;
+			month.appendChild(option);
+		}
+	}
+
+	
+	function monthChange(month){
+		var m;
+		
+		switch(Number(month)){
+		
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			m = 31;
+			break;
+			
+		case 2:
+			m = last_day;
+			break;
+			
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			m = 30;
+			break;
+		}
+		
+		var day = document.getElementById("day");
+		
+		//이전의 옵션값을 모두 제거
+		
+		var n = day.length;
+		while(n > 0) {
+			day.remove(0);
+			n--;
+		}
+		for(var i = 1; i<= m; i++){
+			var option = document.createElement("option");
+			option.innerHTML = i;
+			option.value = i;
+			day.appendChild(option);
+		}
+		
+	}
+	
+	//윤달 검사 메소드
+	//400의 배수이거나, 4의 배수이면서 100의 배수가 아닌경우
+	function isYoon(year){
+		return(year % 400 == 0) || ((year % 4 == 0 ) && (year % 100 != 0));
+	}
+</script>
+
+</head>
+<body>
+
+	<p>
+		생년월일 : 
+		<!-- 년도가 변경되면  onchange로 감지 -->
+		<select id="year" onchange="yoon()">
+			<option>년도</option>
+		</select>
+		
+		<select id="month" onchange="monthChange(this.value)">
+			<option>월</option>
+		</select>
+		
+		<select id="day">
+			<option>일</option>
+		</select>
+	</p>
+
+</body>
+</html>

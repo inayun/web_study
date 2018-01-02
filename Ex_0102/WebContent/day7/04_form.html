@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function check3(form){
+			
+		var id = form.id;
+		var pwd = form.pwd.value;
+		
+		if(id.value == ''){
+			id.focus();
+			return;
+		}
+		form.submit();
+	}
+</script>
+
+</head>
+<body>
+
+	<form name="ff" action ="03_form.html">
+	 
+	 	<table border="1">
+	 		<tr>
+	 			<th>아이디</th>
+	 			<td><input name="id"/></td>
+	 		</tr>
+	 		
+	 		<tr>
+	 			<th>패스워드</th>
+	 			<td><input type="password" name="pwd"/></td>
+	 		</tr>
+	 		
+	 		<tr>
+	 			<td colspan="2">
+	 				<input type="button" value="전송2" onclick="check3(this.form)"/>
+	 			</td>
+	 		</tr>
+	 	
+	 	</table>
+	 
+	 </form>
+
+</body>
+</html>
