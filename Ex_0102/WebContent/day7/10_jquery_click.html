@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+
+<script type="text/javascript">
+	$(function(){
+
+		$("#btn1").click(function(){
+			alert("버튼1 클릭됨");
+		});
+		
+		$("#btn2").click(function(){
+			var msg = $("#msg").val();
+			alert(msg);
+			
+			$("#msg").val("안녕하세요");
+			$(this).val("바뀜");
+		});
+		
+		$("#btn3").click(bt3_click);
+		$("#btn4").click(bt4_click);
+	});
+
+	function bt3_click(){
+		alert("버튼 3클릭");
+	}
+	
+	var bt4_click = function(){
+		alert("버튼 4 클릭");
+	}
+</script>
+</head>
+<body>
+
+
+	<p>
+		메시지 : <input id="msg" />
+		<br>
+		<input type="button" id="btn1" value="버튼1"/>
+		<input type="button" id="btn2" value="메시지"/>
+		<input type="button" id="btn3" value="test 1"/>
+		<input type="button" id="btn4" value="test 2"/>
+	</p>
+</body>
+</html>

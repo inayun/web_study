@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+
+<script type="text/javascript">
+	
+	$(function(){
+		
+		$("#plus, #minus, #multi").click(function(){
+			var input1 = $("#input1").val();
+			var input2 = $("#input2").val();
+			switch($(this).val()){
+			case '+':
+				$("#output").val(Number(input1)+Number(input2));
+				break;
+				
+			case '-':
+				$("#output").val(input1 - input2);
+				break;
+				
+			case '*':
+				$("#output").val(input1 * input2);
+				break;
+				
+			}
+			
+		});
+		
+	});
+	
+	
+</script>
+
+
+</head>
+<body>
+
+<input id="input1"/>
+:
+<input id="input2"/>
+=
+<input id="output"/>
+<br>
+<button id="plus" value="+">합</button>
+<button id="minus" value ="-">차</button>
+<button id="multi" value ="*">곱</button>
+
+
+
+</body>
+</html>

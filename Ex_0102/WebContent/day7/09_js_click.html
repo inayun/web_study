@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 없이 클릭이벤트 처리</title>
+
+	<script type="text/javascript">
+	
+		window.onload = function(){
+		
+			var b = document.getElementById("btn1");
+			b.addEventListener('click', test, false);
+		}
+		
+		function test(){
+			
+			alert('이벤트 호출');
+		}
+	</script>
+</head>
+<body>
+
+	<input type="button" id="btn1" value="버튼"/>
+
+</body>
+</html>
