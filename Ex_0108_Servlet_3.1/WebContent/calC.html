@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function myClick(f){
+	
+	var value1 = f.su1.value.trim();
+	var value2 = f.su2.value.trim();
+	
+	f.submit();
+	
+	regNumber = /^[0-9]*$/;
+	  
+	if(!regNumber.test(su1) ||!regNumber.test(su2)) {
+	    alert('숫자만 입력해주세요.');
+	    return;
+	}
+	
+}
+</script>
+
+</head>
+<body>
+	<form name="ff" action="calc.do">
+		수1: <input type="text" name="su1"><br>
+		수2: <input type="text" name="su2"><br>
+		<input type="submit" value ="확인" onclick="myClick(this.form);">
+	</form>
+</body>
+</html>

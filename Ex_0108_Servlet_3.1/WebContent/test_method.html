@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function send_get(f){
+		f.method = "GET";
+		f.submit();
+	}
+	function send_post(f){
+		f.method = "POST";
+		f.submit();
+	}
+	
+	
+</script>
+
+
+</head>
+<body>
+	<form action = "Life.do">
+		<input type="button" value="GET으로 요청" onclick="send_get(this.form);">
+		<input type="button" 
+				value="POST으로 요청" onclick="send_post(this.form);">
+		
+		<input type="button" value="POST">	
+	</form>
+</body>
+</html>

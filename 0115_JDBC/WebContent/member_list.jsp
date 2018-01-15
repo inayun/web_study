@@ -68,6 +68,18 @@ th {
 		f.submit();
 		
 	}
+	
+	function del(idx){
+		
+		if(confirm("정말 삭제하시겠습니까?") == false){
+			return;			
+		}
+		location.href = "member_del.jsp?idx="+idx;
+	}
+	
+	
+	
+	
 </script>
 
 
@@ -96,7 +108,7 @@ th {
 			<td><%= vo.getPwd() %></td>
 			<td><%= vo.getEmail() %></td>
 			<td><%= vo.getAddr() %></td>
-			<td><input type="button" value="삭제" onclick="del();"></td>
+			<td><input type="button" value="삭제" onclick="del('<%= vo.getIdx() %>');"></td>
 
 		</tr>
 		<% } %>

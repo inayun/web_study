@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>나라별 페이지 선택하기</title>
+		<script type="text/javascript">
+		
+		function myClick(f){
+			
+			var value = f.nation.value;
+			
+			
+			alert(value);
+			
+			f.submit();
+			
+		}
+		
+		</script>
+	
+	
+	</head>
+	<body>
+	
+		<form action = "greet.do">
+			국가별 인사말 선택하기<br>
+			<input type = "radio" name="nation" value="kor" checked="checked">한국<br>
+			<input type = "radio" name="nation" value="eng">미국<br>
+			<input type = "radio" name="nation" value="jpn">일본<br>
+			<input type = "radio" name="nation" value="chn">중국<br>
+		
+		<!-- submit을 통해 form태그의 name속성이 파라미터로 전달. -->
+			<input type="submit" value = "인사말 보기">
+	
+			<input type="button" value="확인" onclick="myClick(this.form);">
+	
+		</form>		
+	</body>
+</html>
