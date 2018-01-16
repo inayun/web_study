@@ -9,7 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet("/calc.do")
+//@WebServlet("/calc.do")
 public class calculation extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

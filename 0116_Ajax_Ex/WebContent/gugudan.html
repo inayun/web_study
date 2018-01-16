@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/httpRequest.js">
+	//Ajax 연동을 위해 미리 준비한 httpRequest.js를 참조
+</script>
+
+<script type="text/javascript">
+	function send(){
+		var dan = document.getElementById("dan").value;
+		
+		if( dan < 2 || dan > 9 ){
+			alert("2~9 사이의 값을 입력하세요");
+			return;
+		}
+		
+		//Ajax로 요청하기 위한 설정
+		var url = "gugudan_ajax.jsp";
+		var param = "dan="+dan;
+		
+		//Ajax에 요청
+		//sendRequest(통신할 url, param, 통신 완료후 callBack, 전송타입)
+		sendRequest(url, param, resultFn, "GET");
+	}
+	
+	function resultFn(){
+		//alert("콜백메서드 호출됨");
+		
+		//Ajax로 요청한 결과가 자동으로 현재 메서드로 돌아옴
+		//xhr.readyState
+		// 0 - 초기화 오류
+		// 1 ~ 3 - 로딩중 에러
+		// 4 - 로드 완료
+		
+		//xhr.status
+		//200: 이상없음
+		//404(경로없음), 500(참조에러).... : 이상있음
+		
+		if(xhr.readyState == 4 && 
+				xhr.status == 200){
+			//도착한 데이터를 읽어옴
+			var data = xhr.responseText; //ajax body안에 있던 텍스트
+			document.getElementById("disp").innerHTML = data;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+
+	<!-- Ajax(Asynchronous Javascript & XML)
+		: 자바 스크립트를 이용한 백그라운드 통신 기술
+		(하나의 웹페이지 안에서 변경이 발생된 영역만 갱신이 가능)
+	 -->
+	 
+	 단 : <input id ="dan">
+	 <input type="button" value="결과보기" onclick="send()" >
+	 <div id="disp"></div>
+</body>
+</html>

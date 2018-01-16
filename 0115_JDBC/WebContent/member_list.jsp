@@ -4,9 +4,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
+<!-- c(Core) : if, forEach, choose와 같은 제어문 -->
+<%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
+
+<!-- fmt(format) : 출력형식 지정 (날짜 ,숫자) -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <%
 	MemberDAO dao = MemberDAO.getInstance();
 	List<MemberVO> member_list = dao.selectList();
+	request.setAttribute("m_list", member_list);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -97,7 +106,7 @@ th {
 			<th>이메일</th>
 			<th>주소</th>
 		</tr>
-
+<%-- 
 		<% for( int i = 0; i < member_list.size(); i++ ){ 
 		 		MemberVO vo = member_list.get(i); %>
 		<tr class="tr">
@@ -111,7 +120,23 @@ th {
 			<td><input type="button" value="삭제" onclick="del('<%= vo.getIdx() %>');"></td>
 
 		</tr>
-		<% } %>
+		<% } %> --%>
+		
+		<c:forEach var="i" items="${m_list}">
+		
+			<tr>
+				<td>${i.idx}</td>
+				<td>${i.name}</td>
+				<td>${i.id}</td>
+				<td>${i.pwd}</td>
+				<td>${i.email}</td>
+				<td>${i.addr}</td>
+				<td><input type="button" value="삭제" onclick="del('${i.idx}');"></td>
+			</tr>
+			
+		</c:forEach>
+		
+		
 	</table>
 
 	<form>
