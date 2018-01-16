@@ -42,6 +42,7 @@
 				xhr.status == 200){
 			//도착한 데이터를 읽어옴
 			var data = xhr.responseText; //ajax body안에 있던 텍스트
+			alert(data);
 			document.getElementById("disp").innerHTML = data;
 		}
 	}

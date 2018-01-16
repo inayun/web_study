@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	
+	var p = {name:"홍길동", age:'30', tel:'010-111-1234'};
+	document.write("이름 : " + p.name + "<br>");
+	
+	
+	var sido = [
+		
+		{si : '서울' , gu : '관악', dong: '신림'},
+		{si : '성남' , gu : '수정', dong: '신흥'},
+		{si : '인천' , gu : '부평', dong: '부평'}
+	];
+	
+	for(var i = 0; i < sido.length; i++){
+		
+		document.write(sido[i].si + "/" + 
+						sido[i].gu + "/" +
+						sido[i].dong + "<br>");
+	}
+	
+	document.write("<hr>");
+	var course = {"name":"자바개발자과정",
+					"start":"2017-11-15",
+					"end":"2018-05-15",
+					"sub":["java", "jsp", "db"],
+					"student":[{"name":"홍길동","age":"30"},
+								{"name":"이길동","age":"22"},
+								{"name":"박길동","age":"28"}
+					]
+	};
+	
+	document.write("과정명:" +course.name+"<br>");
+	document.write("시작일:" +course.start+"<br>");
+	document.write("종료일:" +course.end+"<br>");
+	document.write("과목명:"+"<br>");
+
+	for(var i= 0; i< course.sub.length; i++){
+		document.write(course.sub[i]+"<br>");
+	}
+	
+	document.write("학생명:"+"<br>");
+	
+	for(var i= 0; i< course.student.length; i++){
+		document.write(course.student[i].name+"<br>");
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+/*  
+ 
+JSON (Javascript Object Natation) 표기법 : 
+	서로 다른 프로그램에서 데이터를 교환하기 위한 표기법
+	읽고 쓰기가 쉬움
+	
+ */
+
+var cnt = { 'c1':'First', 'c2':'Second', 'c3':'Third' };
+var c1_value = cnt.c1;
+document.write(c1_value);
+document.write(cnt.c2);
+ 
+var mem = {lee:'이씨', park : '박씨', kim:'김씨'};
+document.write(mem.park);
+
+var mem2 = [ {kim:'김씨', age:'20', stu:'빅데이터'},
+			{lee:"이씨", age:'24', stu:'빅데이터'},
+			{park:"박씨", age:'24', stu:'자바'}];
+	
+document.write(mem2[1].stu); //이씨의 stu 데이터 : 빅데이터
+
+var mem3 = {
+			c1:["김씨","20","남"],
+			c2:["이씨","30","여"],
+			c3:[]
+};
+
+document.write(mem3.c1[1]);
+</script>
+</head>
+<body>
+
+</body>
+</html>
