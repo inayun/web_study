@@ -32,6 +32,7 @@ table {
 		<tr>
 			<th>번호</th>
 			<th>이름</th>
+			<th>아이디</th>
 			<th>비밀번호</th>
 			<th>패스워드</th>
 			<th>이메일</th>

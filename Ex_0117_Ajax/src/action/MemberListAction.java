@@ -30,7 +30,8 @@ public class MemberListAction extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	
 		List<MemberVO> list = MemberDAO.getInstance().selectList();
 		request.setAttribute("list", list);
