@@ -1,0 +1,140 @@
+:::멤버코드로 멤버객체 가져오기:::
+
+public static MemberDTO getMemberByMemberCode(int memberCode) throws SQLException{
+
+Connection con = null;
+PreparedStatement pstmt = null;
+ResultSet rset = null;
+MemberDTO member = null;
+
+try{
+	con = DBUtil.getConnection();;
+	pstmt = con.prepareStatement(sql.getString("getMemberByMemberCode"));
+	pstmt.setInt(1,memberCode);
+	rset = pstmt.executeQuery();
+	
+	if(rset.next()){
+	member = new MemberDTO(rset.getInt(1),rset.getString(2),rset.getString(3));
+	}
+	
+}finally{
+	DBUtil.close(con,pstmt,rset);
+}
+return member;
+	
+}
+
+:::모든 멤버 가져오기:::
+public static ArrayList<MemberDTO> getAllMember() throws SQLException{
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<MemberDTO> list = null;
+	
+	try{
+		con = DBUtil.getConnection();
+		pstmt = con.prepareStatment(sql.getString("getAllMember"));
+		rset = pstmt.executeQuery();
+		list = new ArrayList<MemberDTO>();
+		while(rset.next()){
+			list.add(new MemberDTO(rset.getInt(1),rset.getString(2),rset.getString(3)));
+		}
+		
+	}finally{
+		DBUtil.close(con,pstmt,rset);
+	}
+}return list;
+}
+
+:::멤버 정보 변경하기:::
+public stati boolean updateMember(int memberCode, String password, String phone) throws SQLException{
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try{
+		con = DBUtil.getConnection();
+		pstmt = con.prepareStatement(sql.getString("updateMember"));
+		pstmt.setString(1,password);
+		pstmt.setString(2,phone);
+		
+		int result = pstmt.executeUpdate();
+		if(result == 1){
+			return true;
+		}
+	} finally{
+		DBUtil.close(con,pstmt);
+	} 
+	return false;
+}
+
+:::멤버코드로 해당멤버 삭제하기 :::
+
+public static boolean deleteMember(int membercode) throws SQLException{
+
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try{
+		con = DBUtil.getConnection();
+		pstmt = con.prepareStatement(sql.getString("deleteMember"));
+		pstmt.setInt(1,memberCode);
+		int result = pstmt.executeUpdate();
+		
+		if(result == 1){
+			return true;
+			}
+	} finally {
+		DBUtil.close(con,pstmt);
+	}
+	return false;
+}
+
+:::멤버 추가하기:::
+
+public static boolean addMember(MemberDTO member) throws SQLException{
+
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+	
+		con = DBUtil.getConnection();
+		pstmt = con.prepareStatement(sql.getString("addMember"));
+		
+		pstmt.setString(1,member.getEmail());
+		pstmt.seteString(2,member.getPassword());
+		
+		int result = pstmt.executeUpdate();
+		
+		if(result == 1){
+			return true;
+		}
+	} finally {
+		DBUtil.close(con,pstmt);
+	}
+	return false;
+}
+
+:::해당 이메일이 사용중인지 확인하기:::
+
+public static int getCountByEmail(String email) throws SQLException{
+
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	int count = 0;
+	
+	try{
+		con = DBUtil.getConnection();
+		pstmt = con.prepareStatement(sql.getString("getCountByEmail"));
+		pstmt.setString(1,email);
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()){
+			count = rset.getInt(1);
+		}
+	} finally {
+		DBUtil.close(con,pstmt,rset);
+	}
+	return count;
+}
