@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- Ajax 사용하기 위해서 임포트하는 스크립트. src 지정 -->
+<script type="text/javascript" src="js/httpRequest.js"></script>
+
+<script type="text/javascript">
+	//웹페이지 시작하자마자 호출
+	window.onload = function(){
+		
+	//Ajax를 통해 백그라운드에서 재생목록을 얻어옴
+	
+	var url="movie_list_json.jsp";
+	sendRequest(url, null, resultFn, "GET");
+	};
+	
+	function resultFn(){
+		
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var data = xhr.responseText;
+			
+			//넘어온 결과값에서 JSON 객체를 분리
+			var json = eval(data);
+			
+			//<select>에 option을 추가
+			var movie_select = document.getElementById("movie_select");
+			
+			for(var i = 0; i<json.length; i++){
+				
+				var option = document.createElement("option");
+				option.innerHTML = json[i].title;
+				option.value = json[i].path;
+				
+				movie_select.appendChild(option);
+				
+			}
+			
+		}
+	}
+	
+	function movie_play(){
+		var path = document.getElementById("movie_select").value;
+		var my_video = document.getElementById("my_video");
+		my_video.src = path;
+		my_video.play();
+	}
+	
+	
+</script>
+</head>
+<body>
+
+	비디오 목록
+	<select id="movie_select" onchange="movie_play();">
+		<option>:::재생할 비디오를 선택하세요:::</option>
+	</select>
+	
+	<hr>
+	
+	<video src="" id="my_video" controls="controls" width="600" height="400"></video>
+</body>
+</html>
