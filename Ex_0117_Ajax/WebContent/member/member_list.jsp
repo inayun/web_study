@@ -15,6 +15,43 @@ table {
 
 </style>
 
+<script type="text/javascript" src="../js/httpRequest.js"></script>
+	
+	<script type="text/javascript">
+	
+	function del(idx){
+			
+		alert("삭제버튼 눌림");
+		if(!confirm("정말 삭제하시겠습니까?")){
+			return;
+		}
+	
+		var url = "member_del.do";
+		var param = "idx=" + idx;
+		
+		sendRequest(url, param, resultFn, "GET");
+			
+	}
+	
+	function resultFn(){
+		
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var data = xhr.responseText;
+			
+			//json = [{'param':'no'}];
+			var json = eval(data);
+			
+			if(json[0].param == 'yes'){
+				alert('삭제성공');
+			} else {
+				alert('삭제실패');
+			}
+			location.href="member_list.do";
+		}
+	}
+	
+	</script>
+
 </head>
 <body>
 

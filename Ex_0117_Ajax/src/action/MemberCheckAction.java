@@ -35,7 +35,7 @@ public class MemberCheckAction extends HttpServlet {
 		}
 		
 		//JSON타입으로 전송할때 한글이 섞여있으면 인코딩 오류가 나므로 '한글'텍스트도 전송 가능하도록 인코딩 해줘야함
-		response.setContentType("text/plain:charset=UTF-8");
+		response.setContentType("text/plain;charset=UTF-8");
 		
 		//res를 JSON타입으로 돌려보냄
 		String resultStr = String.format("[{'result':'%s'},{'mid':'%s'}]",res,id);

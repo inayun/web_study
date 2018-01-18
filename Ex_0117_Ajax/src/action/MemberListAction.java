@@ -15,6 +15,7 @@ import vo.MemberVO;
 /**
  * Servlet implementation class MemberListAction
  */
+
 @WebServlet("/member/member_list.do")
 public class MemberListAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;

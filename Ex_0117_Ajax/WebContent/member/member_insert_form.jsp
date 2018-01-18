@@ -8,7 +8,6 @@
 
 <script type="text/javascript" src="../js/httpRequest.js"></script>
 
-
 <script type="text/javascript">
 
 	var b_idCheck = false;
