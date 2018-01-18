@@ -13,6 +13,10 @@
 <body>
 
 	여기는 로그인을 해야 볼 수 있는 메인 페이지 입니다.
+	<br>
+	${sessionScope.user.name} 님 환영합니다. <br>
+	
+	<input type="button" value="로그아웃" onclick="location.href='logout.do'">
 	
 </body>
 </html>

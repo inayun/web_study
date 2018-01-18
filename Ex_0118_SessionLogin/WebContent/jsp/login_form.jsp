@@ -41,9 +41,11 @@
 			var json = eval(data);
 			
 			if(json[0].param=='no_id'){
-				alert("아이디가 존재하지 않습니다.")	
-			} else if(json[0].parma=='yes_id'){
-				
+				alert("아이디가 존재하지 않습니다.");	
+			} else if(json[0].param=='no_pwd'){
+				alert("비밀번호가 일치하지 않습니다.");
+			} else {
+				location.href="clear.do";
 			}
 		}
 	
