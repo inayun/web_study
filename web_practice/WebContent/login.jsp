@@ -7,6 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
+<script type="text/javascript" src="js/httpRequest.js"></script>
+<script type="text/javascript">
+
+	function login(form){
+		
+		var id = form.id.value.trim();
+		var pwd = form.pwd.value.trim();
+		
+		
+		
+	}
+
+</script>
+
 <style type="text/css">
 
 *{

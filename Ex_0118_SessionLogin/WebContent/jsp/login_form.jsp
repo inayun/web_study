@@ -27,10 +27,10 @@
 			return;
 		}
 		
-		var url="login.do";
+		var url="member.do";
 		var param = "id=" + id + "&pwd=" + pwd;
 		
-		sendRequest(url, param, resultFn, "GET");
+		sendRequest(url, param, resultFn, "POST");
 	
 	}
 	
