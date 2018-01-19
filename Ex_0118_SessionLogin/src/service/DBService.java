@@ -23,62 +23,23 @@ public class DBService {
 	
 	public DBService() {
 		try {
-			
 			InitialContext ic = new InitialContext();
 			ds = (DataSource)ic.lookup( "java:comp/env/jdbc/oracle_test" );
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
 	
 	public Connection getConnection() {
-		
 		Connection conn = null;
-		
 		try {
-			
 			conn = ds.getConnection();
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
 		return conn;
 		
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

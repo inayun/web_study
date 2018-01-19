@@ -1,0 +1,1 @@
+insert into member values(member_code_seq.nextVal,'inah','1111','윤인아','ina-yun@hanmail.net');
