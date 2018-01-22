@@ -27,7 +27,7 @@ public class DBService {
 		try {
 			
 			InitialContext ic = new InitialContext();
-			ds = (DataSource)ic.lookup( "java:comp/env/jdbc/oracle_test" );
+			ds = (DataSource)ic.lookup( "java:comp/env/jdbc/orcl" );
 			
 		} catch (Exception e) {
 			// TODO: handle exception
