@@ -8,17 +8,19 @@ public class work3 {
 		
 		int input = scanner.nextInt();
 		
-		for(int d = 0; d <input; d++) {
+		String arr[][] = new String[9/input + 9%input][input];
+		
 			
 			for(int i = 1; i <= 9; i++) {
 			
+				String gugu  = "";
 				for(int j = 1; j <= 9; j++) {
-					System.out.printf("%d * %d = %d",i,j,i*j);
-					System.out.println();
+					gugu+= String.format("%d * %d = %d \n",i,j,i*j);
 				}
+				//arr[][]
 			}
 			
-		}
+
 		
 	}
 }
