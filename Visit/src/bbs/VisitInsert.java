@@ -53,7 +53,6 @@ public class VisitInsert extends HttpServlet {
 		} catch(SQLException s){
 			s.printStackTrace();
 		} finally {
-			
 			try {
 				if(pstmt != null) pstmt.close();
 			} catch (SQLException e) {
