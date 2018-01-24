@@ -19,6 +19,39 @@
 
 </head>
 <body>
+
+	
+	:::Servlet 3.0 어노테이션
+	- @WebServlet
+	- @Resources 
+	- @WebFilter 한글.영어처리시
+	- @PresistenceContext
+	- @WebInitParam 
+	- @PresistenceContexts
+	- @WebListener
+	- @PresistenceUnit
+	- @MultipartConfig 파일 다운 업로드시
+	- @PresistenceUnits
+	- @DeclareRoles
+	- @PostConstruct
+	- @PreDestroy
+	- @Resource
+	- @RunAs
+	
+
+	::: ServletContext
+	- ServletContext 객체는 'web application 당' 하나씩 생성
+	- web application 전체에서 참조할 수 있는 초기화 파라미터  값을 저장함
+	- Servlet 에서 getServletContext()를 이용해 객체를 얻을 수 있음
+	
+	::: ServletConfig
+	- ServletConfig 객체는 Container가 서블릿을 생성할때 생성되는 객체
+	- Web.xml 이름/값을 쌍으로  읽어서 초기파라미터 값을 전송함
+	- ServletConfig 객체는 'Servlet 객체당' 한개씩 생성
+	- Servlet에서 getServletConfig()를 이용해서 객체를 얻어옴
+	
+	
+
 	<form action = "Life.do">
 		<input type="button" value="GET으로 요청" onclick="send_get(this.form);">
 		<input type="button" 
