@@ -1,0 +1,78 @@
+요청 헤더 정보처리 관련 메소드
+
+- getHeader : 지정한 이름의 헤더 값을 구함(String)
+- getHeaders : 지정한 이름의 헤더 값의 목록을 구함(Enumeration)
+- getHeaderNames : 모든 헤더의 이름을 구함(Enumeration)
+- getIntHeader : 지정한 헤더 값을 정수값으로 구함(int)
+- getDataHeader : 지정한 헤더값을 시간 값으로 얻어옴(long)
+					1970년 1월 1일 기준으로 함
+
+
+Response
+:::주요기능 반환형은 전부다 Void
+- setContentType(String type) : 문자 형태
+- setDateHeader(String name, String value)
+	:name으로 data에 설정된 밀리세컨드 시간값을 헤더에 설정
+- setHeader(String name, String value)
+	:name으로 value값을 헤더로 설정
+- sendError(int status, String message)
+	:에러코드를 설정하고 메시지 보냄
+- sendRedirect(String URL)
+	:클라이언트 요청을 url로 보냄
+
+Pagecontext
+
+- getRequest
+- getResponse
+- getSession
+- getServletContext
+- getServletConfig
+- getOut
+- getPage
+- getException
+
+
+:::application
+
+application 기본 객체는 JSP 페이지의 서블릿 컨텍트를말함
+application 기본 객체는 application 당 하나씩 존재함
+
+
+:::서버 정보 읽어오기
+
+- getServletInfo() : 서버의 정보 구함
+- getMajorVersion() : 서버가 지원하는 서블릿 규약에 메이저 버전을 리턴
+						버전의 '정수'부분을 표시 ex) tomcat 8.5면 8을 리턴
+
+- getMinorVersion() : 마이너 버전을 리턴
+						버전의 소수 부분을 표시 		
+						
+						
+::: out
+- out 기본 객체는 JSP 페이지의 출력을 위한 것
+웹 브라우저 응답을 출력하기 위한 JspWriter 객체임
+
+out 객체와 buffer와의 관계
+
+- getBufferSize : 버퍼의 크기를 구함
+- getRemaining : 현재 남아 있는 버퍼의 크기를 구함
+- clear : 버퍼의 내용을 지움, 만약 버퍼가 비워있으면 예외를 발생
+- clearBuffer : 버퍼의 내용을 지움 . 만약 버퍼가 비워있어도 예외 발생시키지 않음
+- flush : 버퍼를 플러시 함
+- isAutoFlush : 버퍼가 다 찼을 대 자동으로 플러시할 경우 true를 리턴함
+
+
+속성과 스코프
+	
+구분						접근					생존범위 					사용
+
+ServletContext	웹어플리케이션내의 모든것		WAS가 종료 되기전까지		전체 어플리케이션에서 공유되는 자원
+-------------------------------------------------------------------------------------
+HttpSession		특정 세션에 접근 할 수 있는		HttpSession객체의 생존시까지	클라이언트의 상태 유지정보나 장바구니 기능
+				서블릿이나 JSP
+
+HttpServlet		어플리케이션에서 request에		client가 request객체가		MVC 패턴에서 Model 정보를 view에
+Request			접근 가능한 것들				유지되는 동안 유지				전달할 때 사용함
+ 				
+ 				
+PageContext		해당 JSP 내				JSP 내에서만 유효함

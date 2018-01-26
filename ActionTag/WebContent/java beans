@@ -1,0 +1,52 @@
+자바 빈즈
+
+- JSP 페이지 안에서 자바 빈즈를 사용할 수 있도록 하는 액션 태그와 
+페이지를 활용할 수 있도록 하는 액션태그가 있음
+
+
+자바빈즈
+
+- 자바 클래스 중에 자바 빈즈 규약에 맞게 작성된 클래스
+- 멤버 변수 getter / setter 메소드로 이루어져 있음
+- 값을 저장하는 Value Object로 활용됨
+
+<jsp:useBean> 액션태그
+- 객체의 이름과 사용범위, 빈의 저장을 통해서 객체가 생성됨
+- JSP의 자바 코드에서는  action의 id 특성에 지정된 값을 통해서 객체를 참조함
+
+- 형식
+<jsp:useBean id="빈 이름" scope="범위" class="빈의 저장위치 " />
+
+id : 객체 인스턴스를 식별할 수있는 이름
+scope : 객체 참조의 유효범위 (기본 : 페이지)
+class : 완전한 형태의 클래스 이름
+
+
+setProperty
+<jsp:setProperty>
+- 빈의 속성값을 설정하는 태그
+
+<jsp:serProperty name="빈 이름" property="프로퍼티명" value="저장할 값" />
+
+- property : 값을 설정하고자 하는 빈의 속성의 이름
+- "*" : servletRequest안의 모든 인자들 중 빈 속성과 데이터 형이 일치하는 것을 찾아 각각의 속성들을
+각각의 인자 값으로 설정함
+- value : 빈 속성에 설정할 값
+
+getProperty
+<jsp:getProperty>
+<jsp:getProperty name="빈 이름" property="프로퍼티명" />
+
+property : 얻고자 하는 속성의 이름
+name : 속성을 얻고자 하는 빈의 인스턴스 이름
+
+
+
+
+
+
+
+
+
+
+
