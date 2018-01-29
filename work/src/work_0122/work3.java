@@ -1,3 +1,4 @@
+package work_0122;
 import java.util.Scanner;
 
 public class work3 {

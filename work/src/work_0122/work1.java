@@ -1,3 +1,4 @@
+package work_0122;
 
 public class work1 {
 
