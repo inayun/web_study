@@ -1,0 +1,60 @@
+데이터베이스 드라이브를 다운로드하여 lib 에 복사함
+ojdbc6.jar
+
+자바와 데이터베이스 연결시 단계별로 설정함
+1. import java.sql.* : 데이터베이스 API를 임포트함
+2. Driver 검색
+	oracle : thin Driver 사용
+	 oracle.jdbc.driver.OracleDriver
+	 
+	Mysql 
+		org.git.mm.mysql.Driver (5.X버전)
+		com.mysql.jdbc.Driver(5.X 버전)
+		
+	***** Class.forName("검색드라이브명 기입")
+	
+3. DataBase 연결
+
+oracle : jdbc:oracle:thin:@localhost:port번호:데이터베이스명(orcl)
+mysql : jdbc:mysql://localhost:3306/데이터베이스명 
+
+4. Query문 작성
+
+::Statement
+Statement stmt = con.createStatement();
+
+::PreparedStatement
+PreparedStatement pstmt = con.prepareStatement(query);
+
+5. ResultSet rs = (p)stmt.executeQuery(query); select
+	ResultSet rs = (p)stmt.executeUpdate(); insert, update, delete
+	
+	
+6. 사용후 반드시 close()를 실행해야함
+
+7. DriverManager 와 connection
+- DriverManager 클래스는 static 메소드인 getConnection() 메소드를 이용해서
+db와 연결된 Connection 객체를 반환함
+
+- getConnection(String url, String user, String password)
+
+url : "jdbc:oracle:thin:@localhost:1521:orcl"
+user : "scott"
+password : "tiger"
+
+- Connection 객체는 DB과 연결을 담당하는 객체
+Connection 객체를 이용해서 sql을 전송.실행을 할 수 있음
+
+
+Connection의 주요 메소드
+- close() : connection 객체를 해제
+- commit() : 트랜잭션으로 설정된 모든 자원을 디비에 반영
+- createStatement() : sql을 전송할 수 있는 statement 객체를 반환
+- prepareStatment(String sql) : sql을 전송할 수 있는 preparestatement 객체를 반환
+- execute(String sql)
+- executeQuery(String sql)
+- executeUpdate(String sql) : sql이 select 인 경우 사용. 실행결과로 resulSet 객체 반환
+- rollback() : 현재 트랜잭션에 설정내의 모든 작업을 되돌림
+- setAutoCommit() : 자동으로 디비에 반영함
+
+
