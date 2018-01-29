@@ -1,29 +1,33 @@
 package study;
-import java.sql.*;
 
-//update
-public class JdbcEx2 {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+//delete
+public class jdbcEx3 {
 
 	public static void main(String[] args) {
-		
-		StringBuffer sql = new StringBuffer();
-		sql.append("update department set dname='소프트웨어학과' where deptno=203");
-		
+
 		Connection con = null;
 		Statement stmt = null;
 		
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete department where dname='소프트웨어학과'");
 		String Driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1522:orcl";
 		String user = "scott";
 		String pwd = "tiger";
 		
 		try {
+			
 			Class.forName(Driver);
 			con = DriverManager.getConnection(url,user,pwd);
 			stmt = con.createStatement();
 			
 			stmt.executeUpdate(sql.toString());
-			System.out.println("디비 업데이트 성공!");
+			System.out.println("디비 삭제 성공!");
 			
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
@@ -46,6 +50,7 @@ public class JdbcEx2 {
 				}
 				
 			}
+			
 		}
 	}
 

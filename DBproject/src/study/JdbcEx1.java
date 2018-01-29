@@ -3,6 +3,7 @@ package study;
 import java.sql.*;
 
 
+//insert
 public class JdbcEx1 {
 
 	public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class JdbcEx1 {
 			stmt = con.createStatement();
 			
 			StringBuffer sql = new StringBuffer();
-			sql.append("insert into department values(203, '컴터공학과', 200, '공대')");
+			sql.append("insert into department values(206, '매력학과', 201, '예쁜대')");
 			stmt.executeUpdate(sql.toString());
 			System.out.println("디비 연동 성공");
 			

@@ -57,4 +57,58 @@ Connection의 주요 메소드
 - rollback() : 현재 트랜잭션에 설정내의 모든 작업을 되돌림
 - setAutoCommit() : 자동으로 디비에 반영함
 
+ResultSet
+- select 쿼리의 수행결과로 얻어진 결과 집합을 추상화 한 것
+- ResultSet 은 결과 집합에서 data를 가져올 수 있는 다양한 메소드와 Cursor를 포함하고 있음
 
+:::ResultSet 주요 메소드
+- first() : ResultSet 에서 커서를 첫번재 row로 이동함. row가 존재하면 true, 존재안하면 false로 반환
+- last() : ResultSet에서 커서를 마지막번째 row로 이동함. row가 존재하면 true, 안하면 false
+- next() : ResultSet 에서 커서를 다음번재 row로 이동함. row가 존재하면 true, 안하면 false
+- previous() : ResultSet 에서 커서를 이전 row로 이동함. row가 존재하면 true, 안하면 false
+- getInt(int columnIndex) : ResultSet 객체의 커서가 가리키는 현재 row에서 columnIndex에 해당하는 int값 반환
+- getInt(String columnName) : ResultSet 객체의 커서가 가리키는 현재 row에서 columnName에 해당하는 int값 반환
+- getString(int columnIndex) : ResultSet 객체의 커서가 가리키는 현재 row에서 columnIndex에 해당하는 String값 반환
+- getString(String columnName) ResultSet 객체의 커서가 가리키는 현재 row에서 columnName에 해당하는 String값 반환
+- close() : ResultSet객체를 해제함
+
+***ResultSet 내에는 오라클의 자료형마다 두개씩의 getXXX() 메소드가 존재함
+
+select 쿼리의 수행결과 집합과 결과집합에서 데이터를 추출할 수 있는 메소드를 가지고 있는 객체
+
+
+- 오라클로 전송된 SQL 문은 Pasing -> execute plan -> fetch fetch릐 작업을 한 이후에
+SQL 문의 수행결과를 Data Buffer Cache에 저장함
+
+- 똑같은 SQL문이 전송되면 library cache에 저장된 sql의 Parsing 결과와 execuete plan의 그대로 사용하게 됨으로써
+수행속도가 빠름
+
+- PreparedStatement 객체는 SQL의 형태는 동일하나 조건이나 변수값이 다른 문장을 바인딩 변수를 사용해서 변수처리함으로써
+항상 동일한 sql문을 동일하게 처리할 수 있음
+
+- 바인딩 변수 : 실제값을 대체할 때 사용하는 변수 (?,?,?)
+
+:::바인딩 변수
+
+String sql = "insert infro department values(?,?,?,?)";
+PreparedStatment pstmt = con.prepareStatement(sql);
+
+- 바인딩 변수의 개수만큼 순서대로 해당 변수와 대체될 값을 지정해줌
+
+pstmt.setInt(1,203);
+pstmt.setString(2,"정보통신학과");
+pstmt.setInt(3,200);
+pstmt.setString(4,"4호관");
+
+***** 바인딩 변수는 컬럼명에는 절대 사용할 수 없음
+
+PreparedStatement는 PreparedStatment의 바인딩 변수에 값을 지정해주는 setXXX() 메소드를 제공함
+
+:::테이블 컬럼에 외래키 지정
+
+alter table professor add constraint professor_fk
+	:	professor 테이블에 제약조건을 추가  외래키
+FOREIGN key (deptno)
+	: 외래키 지정
+REFERENCES department(deptno);
+	: 참조 테이블(dapartment)을 기본키를 참조함
