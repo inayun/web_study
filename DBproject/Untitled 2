@@ -1,0 +1,17 @@
+트랜잭션 Transaction
+
+- 여러개의 작업을 하나의 '논리적인 작업 단위'로 묶어주는 것을 말함
+- 하나의 작업 단위내의 전체 작업들이 모두 올바르게 수행되거나 또는 전체작업이 모두 수행되지 않도록함
+- insert,delete,update 등의 작업들을 하나의 논리적인 작업단위로 묶어서 쿼리 실행시 
+	모든 작업이 정상처리된 경우에는 commit을 실행시 db에 반영되고, 
+	쿼리 실행중 하나라도 정상처리되지 않을 경우 rollback을 실행해서 작업단위내의 모든 작업을 되돌림
+
+ Connection의 Transaction 관련 메소드
+ 
+ - commit() : 트랜잭션으로 설정된 모든 자원을 디비에 반영함
+ - rollback() : 현재 트랜잭션에 설정내의 모든 작업을 되돌림
+ - rollback(Savepoint savepoint) : Savepoint 설정이후의 모든 작업을 되돌림
+ - setSavepoint(String name) : 현재의 트랜잭션내에 savepoint 설정
+ - setAutoCommit(boolean value) : auto-commit 기능을 설정
+ 
+ 
