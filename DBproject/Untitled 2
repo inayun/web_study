@@ -14,4 +14,13 @@
  - setSavepoint(String name) : 현재의 트랜잭션내에 savepoint 설정
  - setAutoCommit(boolean value) : auto-commit 기능을 설정
  
+ Properties
+ - sql 문을 정의하여 사용
+ - sql 문의 별도의 properties 파일에 저장하고  properties클래스를 이용하여 properties 파일을 읽어서
+ 	getProperty(String key) 메소드를 활용해서 각각의 SQL문을 가지고옴
+ 	
+ Properties 파일의 위치
+ 
+ EditPlus 의 경우 : class 파일이 있는 위치와 같은 폴더
+ Eclips 의 경우 : src\ 아래에 properties 파일을 만듦
  
