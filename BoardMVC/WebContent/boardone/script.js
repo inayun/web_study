@@ -15,7 +15,7 @@ function writeSave(){
 		return false;
 	}
 	
-	if(document.writeForm.pass.value == ""){
+	if(document.writeForm.password.value == ""){
 		alert("비밀번호를 입력하세요");
 		document.writeForm.pass.focus();
 		return false;

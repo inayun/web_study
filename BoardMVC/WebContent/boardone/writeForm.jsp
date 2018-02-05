@@ -23,20 +23,8 @@
 			ref = Integer.parseInt(request.getParameter("ref"));
 			step = Integer.parseInt(request.getParameter("step"));
 			depth = Integer.parseInt(request.getParameter("depth"));
-			
 		}
-	
-	
-
 %>
-
-
-
-
-
-
-
-
 
 <body bgcolor="<%= bodyback_c %>">
 <center><b>글쓰기</b></center><br><br>
