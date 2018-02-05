@@ -79,7 +79,7 @@
 			<%= article.getSubject() %></a>
 			
 			<% if(article.getReadcount() >= 20) { %>
-			<img src="" height="16" border="0">
+			<img src="images/hot.gif" height="16" border="0">
 			<%} %>
 		</td>
 		
