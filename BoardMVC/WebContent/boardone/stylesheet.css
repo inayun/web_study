@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+body{
+	font-size : 9 pt;
+	color:black;
+	line-height:160%;
+	font-family:굴림, verdana, tahoma;
+}
+
+select {
+	font-size : 9 pt;
+	color:black;
+	line-height:160%;
+	font-family: 굴림, verdana, tahoma;
+}
+
+div {
+	font-size : 9 pt;
+	color:black;
+	line-height:160%;
+	font-family:굴림, verdana, tahoma;
+}
+
+form {
+	font-size : 9 pt;
+	color:black;
+	line-height:160%;
+	font-family:굴림, verdana, tahoma;
+}
+
+textarea {
+	border-right : 1px solid black;
+	border-top : 1px solid black;
+}
+
+input{
+	border : 1px solid #999999;
+	color : black;
+	font-family:굴림, verdana, tahoma;
+	height : 19px;
+	background-color: white;
+}
+
+A:link{
+	text-decoration: none;
+	color : gray;
+}
+A:hover{
+	text-decoration: yes;
+	color : green;
+	
+}
+A:visited{
+	text-decoration: none;
+	color : navy;
+}
