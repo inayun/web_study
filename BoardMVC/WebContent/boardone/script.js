@@ -22,3 +22,11 @@ function writeSave(){
 	}
 	
 }
+
+function deleteSave(){
+	
+	if(document.delForm.password.value==""){
+		alert("비밀번호를 입력하세요");
+		document.delForm.password.focus();
+	}
+}

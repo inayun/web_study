@@ -91,10 +91,10 @@ public class BoardDAO {
 				try { rs.close();}catch(SQLException e) {}
 			}
 			if(pstmt != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { pstmt.close();}catch(SQLException e) {}
 			}
 			if(con != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { con.close();}catch(SQLException e) {}
 			}
 		}
 		
@@ -127,16 +127,16 @@ public class BoardDAO {
 				try { rs.close();}catch(SQLException e) {}
 			}
 			if(pstmt != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { pstmt.close();}catch(SQLException e) {}
 			}
 			if(con != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { con.close();}catch(SQLException e) {}
 			}
 		}
 		return x;
 	} //getArticleCount()
 	
-	public List<BoardVO> getArticles(){
+	public List<BoardVO> getArticles(int start, int end){
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -146,15 +146,19 @@ public class BoardDAO {
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select * from board order by num desc");
+		/*	pstmt = con.prepareStatement("select * from board order by num desc");*/
+			
+			pstmt = con.prepareStatement("select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board order by ref desc,step asc)) where rownum >= ? and rownum <= ?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);		
 			rs = pstmt.executeQuery();
 			
+			
 			if(rs.next()) {
+				System.out.println("query success" + start + end);
+				articleList = new ArrayList<BoardVO>(end-start+1);
 				
-				articleList = new ArrayList<BoardVO>();
-				
-				do {
-					
+					do {
 					BoardVO article = new BoardVO();
 					article.setNum(rs.getInt("num"));
 					article.setWriter(rs.getString("writer"));
@@ -183,10 +187,10 @@ public class BoardDAO {
 				try { rs.close();}catch(SQLException e) {}
 			}
 			if(pstmt != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { pstmt.close();}catch(SQLException e) {}
 			}
 			if(con != null) {
-				try { rs.close();}catch(SQLException e) {}
+				try { con.close();}catch(SQLException e) {}
 			}
 		}
 		
@@ -220,7 +224,7 @@ public class BoardDAO {
 			 if(rs.next()) {
 				 
 				 article = new BoardVO();
-				 article.setNum(rs.getInt("num"));
+				 	article.setNum(rs.getInt("num"));
 					article.setWriter(rs.getString("writer"));
 					article.setEmail(rs.getString("email"));
 					article.setSubject(rs.getString("subject"));
@@ -242,10 +246,10 @@ public class BoardDAO {
 					try { rs.close();}catch(SQLException e) {}
 				}
 				if(pstmt != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { pstmt.close();}catch(SQLException e) {}
 				}
 				if(con != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { con.close();}catch(SQLException e) {}
 				}
 			}
 		 
@@ -294,10 +298,10 @@ public class BoardDAO {
 					try { rs.close();}catch(SQLException e) {}
 				}
 				if(pstmt != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { pstmt.close();}catch(SQLException e) {}
 				}
 				if(con != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { con.close();}catch(SQLException e) {}
 				}
 			}
 		 return article;
@@ -305,8 +309,6 @@ public class BoardDAO {
 
 
 	 //실제 디비에 있는 글을 수정 처리 할 메소드
-	 
-	 
 	public int updateArticle(BoardVO article) {
 		
 		 Connection con = null;
@@ -314,7 +316,6 @@ public class BoardDAO {
 		 ResultSet rs = null;
 		 
 		 String dbpasswd = "";
-		 String sql = "";
 		 int result = -1; //결과값
 		 
 		 try {
@@ -327,9 +328,8 @@ public class BoardDAO {
 				 dbpasswd = rs.getString("password");
 				 if(dbpasswd.equals(article.getPassword())) {
 					 //비밀번호 일치하는 경우 수정작업이 이루어짐
-					 sql = "update board set writer=?,email=?,subject=?,content=? where num=?";
 					 
-					 pstmt= con.prepareStatement(sql);
+					 pstmt= con.prepareStatement("update board set writer=?,email=?,subject=?,content=? where num=?");
 					 pstmt.setString(1, article.getWriter());
 					 pstmt.setString(2, article.getEmail());
 					 pstmt.setString(3, article.getEmail());
@@ -353,13 +353,62 @@ public class BoardDAO {
 					try { rs.close();}catch(SQLException e) {}
 				}
 				if(pstmt != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { pstmt.close();}catch(SQLException e) {}
 				}
 				if(con != null) {
-					try { rs.close();}catch(SQLException e) {}
+					try { con.close();}catch(SQLException e) {}
 				}
 			}
 		 return result;
+	} //updateArticle
+	
+	
+	//비밀번호를 입력하고 삭제를 수행할 것이며 이 때 데이터베이스에 저장된 비밀번호와 비교해서 삭제를 처리함
+	public int deleteArticle (int num, String password) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String dbPasswd = "";
+		int result = -1;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select password from board where num = ? ");
+			pstmt.setInt(1,num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbPasswd = rs.getString("password");
+				
+				if(password.equals(dbPasswd)) {
+					pstmt = con.prepareStatement("delete from board where num = ?");
+					pstmt.setInt(1, num);
+					pstmt.executeUpdate();
+					
+					result = 1; //삭제 성공
+				} else {
+					result = 0;
+				}
+			}
+			
+		}  catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try { rs.close();}catch(SQLException e) {}
+			}
+			if(pstmt != null) {
+				try { pstmt.close();}catch(SQLException e) {}
+			}
+			if(con != null) {
+				try { con.close();}catch(SQLException e) {}
+			}
+		}
+	 return result;
+		
 	}
 
 
