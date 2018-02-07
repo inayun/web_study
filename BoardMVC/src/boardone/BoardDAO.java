@@ -411,4 +411,32 @@ public class BoardDAO {
 		
 	}//deleteArticle
 
+/*	
+	public List<BoardVO> getArticleBySearch(String searchScope, String searchContent){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<BoardVO> articleList = null;
+		
+		
+		
+		
+		try {
+			
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("");
+			pstmt.setArray(1,);
+			
+			
+			
+		}
+		
+		
+		
+		
+	} //getArticleBySearch
+	
+	*/
 }

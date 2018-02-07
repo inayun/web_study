@@ -171,6 +171,21 @@
  %>
 
 
+<form action="searchList.jsp" method="post">
+	<div align ="center">
+		<select>
+			<option value="writer" name="searchScope">작성자</option>
+			<option value="title"  name="searchScope" >제목</option>
+			<option value="content"  name="searchScope">내용</option>
+		</select>
+		
+		<input type="text" name="searchContent">
+		<input type="submit" value="검색">
+	</div>
+</form>
+
+	
+
 </body>
 </html>
 
