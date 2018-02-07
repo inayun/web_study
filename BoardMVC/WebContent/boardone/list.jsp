@@ -9,24 +9,27 @@
     
     <%!
     
-  		  //한페이지 에 보여줄 페이지를 10개로 지정
-      	int pageSize = 10;
+  		  //한페이지 에 보여줄 페이지를 5개로 지정
+      	int pageSize = 5;
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     %>
 
 
     <%	
   	 	 String pageNum = request.getParameter("pageNum");
-   		 if(pageNum == null){
+   		 if(pageNum == null){ //현재 페이지를 1로 설정  초기화 : 1
     		pageNum = "1";
     	}
-    	int currentPage = Integer.parseInt(pageNum);
-    	int startRow = (currentPage-1) * pageSize + 1;
-    	int endRow = currentPage* pageSize;
+    	int currentPage = Integer.parseInt(pageNum); //현재 페이지 번호
+    	int startRow = (currentPage-1) * pageSize + 1; //출력할 행의 수
+    	//한페이지 이상일때 페이지 크기에 따라 행의 페이지로 나눔, 특정 페이지로 이동할 경우 출력할 페이지를 계산하여 이동
     	
+    	int endRow = currentPage* pageSize; 
     	int count = 0;
     	int number = 0;
     	List<BoardVO> articleList = null;
+    	
+    	
     	BoardDAO dbPro = BoardDAO.getInstance(); //디비연결
     	count = dbPro.getArticleCount(); //전체 글수
     	
@@ -90,7 +93,7 @@
 		<%
 			int wid = 0;
 			if(article.getDepth() > 0 ){
-				wid = 5 * (article.getDepth());
+				wid = 15 * (article.getDepth());
 				
 		%>
 		
@@ -156,7 +159,7 @@
 		
 		for(int i = startPage; i<= endPage; i++) {
 	%>
-		<a href="list.jsp?pageNum= <%= i %>">[ <%=i %> ]</a>
+		<a href="list.jsp?pageNum=<%= i %>">[<%=i %>]</a>
 	
 		
  <% } if (endPage < pageCount) { %>		

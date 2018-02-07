@@ -49,7 +49,7 @@ public class BoardDAO {
 			}
 			if(num != 0) {
 				// 답변 글일 경우 
-				 	sql = "update board set step+1 where ref=? and step > ?";
+				 	sql = "update board set step=step+1 where ref=? and step > ?";
 				 	pstmt = con.prepareStatement(sql);
 				 	
 				 	pstmt.setInt(1, ref);
@@ -59,7 +59,7 @@ public class BoardDAO {
 				 	depth = depth+1;
 			}else {
 				// 새 글일 경우
-				ref = 0;
+				ref = number;
 				step = 0;
 				depth = 0;
 			}
@@ -409,7 +409,6 @@ public class BoardDAO {
 		}
 	 return result;
 		
-	}
-
+	}//deleteArticle
 
 }
