@@ -146,8 +146,6 @@ public class BoardDAO {
 		
 		try {
 			con = ConnUtil.getConnection();
-		/*	pstmt = con.prepareStatement("select * from board order by num desc");*/
-			
 			pstmt = con.prepareStatement("select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board order by ref desc,step asc)) where rownum >= ? and rownum <= ?");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);		
@@ -411,33 +409,65 @@ public class BoardDAO {
 		
 	}//deleteArticle
 
-	
-	public List<BoardVO> getArticleBySearch(String searchScope, String searchContent){
+public List<BoardVO> getArticlesBySearch(int start, int end, String searchScope, String searchContent){
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		List<BoardVO> articleList = null;
 		
 		
-		
-		
 		try {
-			
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select * from board where ? like '%?%' ");
-			pstmt.setString(1,searchScope);
-			pstmt.setString(2,searchContent);
+			pstmt = con.prepareStatement("select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board where ? like '%?%' order by ref desc,step asc)) where rownum >= ? and rownum <= ?");
+			pstmt.setString(1, searchScope);
+			pstmt.setString(2, searchContent);	
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
+			rs = pstmt.executeQuery();
 			
 			
+			if(rs.next()) {
+				System.out.println("search query success" + start + end);
+				articleList = new ArrayList<BoardVO>(end-start+1);
+				
+					do {
+					BoardVO article = new BoardVO();
+					article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setEmail(rs.getString("email"));
+					article.setSubject(rs.getString("subject"));
+					article.setPassword(rs.getString("password"));
+					article.setReadcount(rs.getInt("readcount"));
+					article.setRef(rs.getInt("ref"));
+					article.setStep(rs.getInt("step"));
+					article.setDepth(rs.getInt("depth"));
+					article.setRegdate(rs.getTimestamp("regdate"));
+					article.setContent(rs.getString("content"));
+					article.setIp(rs.getString("ip"));
+					
+					articleList.add(article);
+					
+				} while(rs.next());
+				
+			}
 			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try { rs.close();}catch(SQLException e) {}
+			}
+			if(pstmt != null) {
+				try { pstmt.close();}catch(SQLException e) {}
+			}
+			if(con != null) {
+				try { con.close();}catch(SQLException e) {}
+			}
 		}
 		
-		
-		s
-		
-	} //getArticleBySearch
-	
+		return articleList;
+	} //getArticles()
 	
 }
