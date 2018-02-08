@@ -411,7 +411,7 @@ public class BoardDAO {
 		
 	}//deleteArticle
 
-/*	
+	
 	public List<BoardVO> getArticleBySearch(String searchScope, String searchContent){
 		
 		Connection con = null;
@@ -426,17 +426,18 @@ public class BoardDAO {
 		try {
 			
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("");
-			pstmt.setArray(1,);
+			pstmt = con.prepareStatement("select * from board where ? like '%?%' ");
+			pstmt.setString(1,searchScope);
+			pstmt.setString(2,searchContent);
 			
 			
 			
 		}
 		
 		
-		
+		s
 		
 	} //getArticleBySearch
 	
-	*/
+	
 }

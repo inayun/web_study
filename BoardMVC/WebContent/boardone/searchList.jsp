@@ -14,7 +14,7 @@
 	BoardDAO dbPro = BoardDAO.getInstance();
 	List<BoardVO> articleList = new ArrayList<BoardVO>();
 	
-    dbPro.getArticleBySearch(searchScope, searchContent);
+   articleList = dbPro.getArticleBySearch(searchScope, searchContent);
     
 	
     %>
