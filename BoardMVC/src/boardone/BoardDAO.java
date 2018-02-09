@@ -415,15 +415,26 @@ public List<BoardVO> getArticlesBySearch(int start, int end, String searchScope,
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<BoardVO> articleList = null;
+		String sql = null;
+		String content = "%"+searchContent+"%";
+		System.out.println(content);
+		
+		if(searchScope.equals("writer")) {
+			sql = "select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board where writer like ? order by ref desc,step asc)) where rownum >= ? and rownum <= ?";
+		} else if (searchScope.equals("subject")) {
+			sql = "select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board where subject like ? order by ref desc,step asc)) where rownum >= ? and rownum <= ?";
+		} else if(searchScope.equals("content")) {
+			sql = "select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board where content like ? order by ref desc,step asc)) where rownum >= ? and rownum <= ?";
+		}
+		
 		
 		
 		try {
 			con = ConnUtil.getConnection();
-			pstmt = con.prepareStatement("select * from (select rownum ,num,writer,email,subject,password,regdate,readcount,ref,step,depth,content,ip from (select * from board where ? like '%?%' order by ref desc,step asc)) where rownum >= ? and rownum <= ?");
-			pstmt.setString(1, searchScope);
-			pstmt.setString(2, searchContent);	
-			pstmt.setInt(3, start);
-			pstmt.setInt(4, end);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			
 			

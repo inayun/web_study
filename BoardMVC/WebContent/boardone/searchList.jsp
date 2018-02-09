@@ -41,6 +41,8 @@
     	}
      	
     	number = count-(currentPage - 1) * pageSize;
+    	
+    	System.out.println(articleList.size());
     %>
 <!DOCTYPE html>
 <html>
