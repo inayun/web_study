@@ -1,0 +1,69 @@
+
+1. 파일 업로드 할 폼 만들기
+
+<fileUploadForm.html>
+<form action="Upload" method="post" enctype="multipart/form-data" >
+	<input type="file" name="filename1">
+</form>
+
+** '파일을 업로드' 시 <form> 태그에서 
+enctype="multipart/form-data" 라는 속성을 반드시 써야함
+안쓸경우, 웹 서버로 데이터를 넘길때 파일의 경로명만 전송되고, 파일 내용은 전송되지 않음
+
+***이때, method 속성은 'post' 로 지정해줘야함(용량이 크기때문에)
+
+
+<form> 태그의 속성인 method, action, enctype 등은 입력받은 데이터를 어떻게 처리할 것인지
+세부적으로 설정하는데 사용
+
+method : 전송 방식
+action : 전송 목적지
+enctype : 전송되는 데이터 형식
+
+***enctype 속성은 다음의 3가지 값으로 지정
+1. application/www-form-urlencoded 
+enctype을 따로 설정하지 않을 경우, 기본값. 
+폼데이터는 서버로 전송되기 전에 URL-Encode 됨
+
+2. multipart/form-data
+파일이나 이미지를 서버로 전송할 경우 사용
+
+3. text/plain
+인코딩을 하지 '않은' 문자 상태
+------------------------------------------------------------
+<UploadServlet.java>  </Upload>
+
+@WebServlet("/Upload")
+@MultipartConfig(maxFileSize=1024*1024*2, location="c://Upload")
+//업로드 할 파일의 최대 크기 : 2Mbyte, 파일을 저장할 디렉토리 : c://Upload 
+
+
+2. 폼으로 보낸거 doPost 에서 받음
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	request.setCharacterEncoding("utf-8");
+	
+	Part part = request.getPart("theFile"); //업로드 폼에서 넘어온 파일
+	String fileName= getFilename(part); //part정보를 이용해 업로드 파일명을 리턴
+	
+	if(fileName != null && !fileName.isEmpty()){ //파일명이 있는경우
+		part.write(fileName);
+		}
+
+
+	//multipart 형식의 폼 데이터는 getBytes()를 사용하여 인코딩 처리함
+	String author = request.getParameter("theAuthor");
+	author = new String(author.getBytes("utf-8"),"UTF-8");
+	
+	response.setContentType("text/html; charset=UTF-8");
+	PrintWriter out = response.getWriter();
+	
+	out.print("작성자" + author );
+	out.print("파일명 : <a href='FileDown?file_name='+fileName    ")
+
+}
+
+
+
+
+

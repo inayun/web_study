@@ -51,6 +51,7 @@ public class UploadServlet extends HttpServlet {
 		//multipart 형식의 폼 데이터는 getBytes()를 사용하여 인코딩 처리함
 		String author = request.getParameter("theAuthor");
 		author = new String(author.getBytes("utf-8"),"utf-8");
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
