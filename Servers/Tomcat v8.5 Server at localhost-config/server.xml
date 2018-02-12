@@ -151,7 +151,7 @@
         <Context docBase="MemberMVC" path="/MemberMVC" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVC"/>
     	<Context docBase="BoardMVC" path="/BoardMVC" reloadable="true" source="org.eclipse.jst.jee.server:BoardMVC"/>
    
-   <Context docBase="CookiePage" path="/CookiePage" reloadable="true" source="org.eclipse.jst.jee.server:CookiePage"/><Context docBase="SessionPage" path="/SessionPage" reloadable="true" source="org.eclipse.jst.jee.server:SessionPage"/><Context docBase="FileUpDown" path="/FileUpDown" reloadable="true" source="org.eclipse.jst.jee.server:FileUpDown"/></Host>
+   <Context docBase="CookiePage" path="/CookiePage" reloadable="true" source="org.eclipse.jst.jee.server:CookiePage"/><Context docBase="SessionPage" path="/SessionPage" reloadable="true" source="org.eclipse.jst.jee.server:SessionPage"/><Context docBase="FileUpDown" path="/FileUpDown" reloadable="true" source="org.eclipse.jst.jee.server:FileUpDown"/><Context docBase="FileDown" path="/FileDown" reloadable="true" source="org.eclipse.jst.jee.server:FileDown"/></Host>
     </Engine>
   </Service>
 </Server>
