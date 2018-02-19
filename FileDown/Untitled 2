@@ -57,11 +57,150 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	
 	response.setContentType("text/html; charset=UTF-8");
 	PrintWriter out = response.getWriter();
-	
 	out.print("작성자" + author );
-	out.print("파일명 : <a href='FileDown?file_name='+fileName    ")
+	out.print("파일명 : <a href='FileDown?file_name='+fileName+"'>" + fileName +"</a>")
+	out.print("파일크기  : " + part.getSize())
+}
+
+---------------------------------------------------------
+<DownloadServlet.java> </FileDown>
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+3. a href에서 파라미터로 넘긴거 여기서 request로 받음
+
+	String fileName = request.getParameter("file_name");
+	String downloadPath = "c:\\upload\\";
+	String filePath = downdownload + fileName; //다운로드 경로에 파일 이름 붙이기
+	
+	byte b[] = new byte[4096]; //byte 배열을 이용하여 저장공간 만들기
+	
+	FileInputStream in = new FileInputStream(filePath);
+	String mimeType = getServletContext().getMimeType(filePath);
+	
+	if(mimeType == null){
+		mimeType = "application/octet-stream";
+		
+		// 두개의 주요 MIME 타입은 기본 타입에 있어 중요한 역할을 함
+
+		1. text/plain 
+		- 텍스트 파일을 위한 기본값
+		- 인간이 읽을수 있어야 하기 때문에 이진 데이터를 포함해서는 안됨
+		
+		2. application/octet-stream
+		- 텍스트 파일을 제외한 다른 모든 경우를 위한 기본값
+		- 알려지지 않은 파일 타입은 이 타입을 사용해야함
+		- 문서 종류 : 아카이브 문서 (인코딩된 다중파일)
+
+
+	}
+	response.setContentType(mimeType); //mimeType으로 인코딩?
+	
+	String encTitle = new String(fileName.getBytes("UTF-8"),"8859_1");
+	String encoding = URLEncoder.encode(encTitle,"utf-8");
+	
+	//다운로드 내역을 화면에 보여줌
+	response.setHeader("Content-Disposition", "attachment; filename=" + encoding);
+	ServletOutputStream out = response.getOutputStream();
+	
+	int numRead; //읽어들인 문서의 용량
+	
+	while( (numRead = in.read(b, 0, b.length)) != -1  ){
+		out.write(b, 0, numRead);
+	}
+
+	out.flush();
+	out.close();
+	in.close();
+
+-----------------------------------------------------------
+
+ServletConfig : 특정 서블릿에 등록하여 사용하는 값
+
+<init-param>
+	<param-name></param-name>
+	<param-value></param-value>
+</init-param>
+
+
+
+ServletContext : 웹 어플리케이션 전역에서 사용할 수 있는 값
+
+<context-param>
+	<param-name></param-name>
+	<param-value></param-value>
+</context-param>
+
+
+
+::: ServletContext 활용
+
+<web.xml>
+
+<context-param>
+	<param-name>company</param-name>
+	<param-value>increpas</param-value>
+</context-param>
+
+==========================================
+<InitParam.java>
+
+String company = getServletContext().getInitParameter("company");
+
+===========================================
+
+::: ServletConfig 활용
+
+<web.xml>
+
+<servlet>
+	<servlet-name>InitParam</servlet-name>
+	<servlet-class>com.servletex.Initparam</servlet-class>
+	
+	<init-param>
+		<param-name>tel</param-name>
+		<param-value>010-1234-5678</param-value>
+	</init-param>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>InitParam</servlet-name>
+	<url-pattern>/Initparam</url-pattern>
+	
+</servlet-mapping>
+
+
+
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

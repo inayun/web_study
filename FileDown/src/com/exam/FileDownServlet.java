@@ -26,7 +26,10 @@ public class FileDownServlet extends HttpServlet {
 		// 4kbyte를 byte 배열을 이용하여 저장할 공간을 만듦
 		
 		FileInputStream in = new FileInputStream(sFilePath);
+		
+		
 		String sMimeType = getServletContext().getMimeType(sFilePath);
+		System.out.println(sMimeType); //  image/jpeg출력
 		if(sMimeType == null) {
 			// application/octet-stream : 
 			//아카이브 문서(인코딩된 다중 파일),
@@ -49,6 +52,7 @@ public class FileDownServlet extends HttpServlet {
 				out.write(b, 0, numRead); //write는 byte 배열로 했을때 autoFlush 기능을 지원함
 				
 			}
+
 			
 			out.flush();
 			out.close();

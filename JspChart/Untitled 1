@@ -1,0 +1,30 @@
+차트 작성 순서
+
+1. 데이터 생성
+- 차트에 사용될 데이터는 Dataset 인터페이스를 구현한 클래스를 통하여 관리
+- 차트에 따라 사용될 Dataset 클래스들이 다름. API를 반드시 참고하여야함
+
+2. 차트를 '만듦'
+- 차트를 생성하기 위해서는 ChartFactory 클래스 createXXXChart()
+createPieChart()에 의해 만듦
+
+3. 차트를 원하는 형태로 만듦
+
+4. 차트를 '보여줌' (2가지)
+(1) 일반 Local Application :
+ 에서는 ChartFrame 클래스를 이용하여 프레임을 생성
+ 
+	 ChartFrame frame = new ChartFrame("title",chart);
+	 frame.pick(); //pick은 무조건 작게나오는데 마우스로 드래그해서 늘릴수 있음
+	 //frame.setSize(가로사이즈,세로사이즈);
+	 frame.setVisible(true);
+
+(2) Web Application :
+에서는 ServletOutputStream 클래스와 ChartUtilities 클래스를 이용하여
+웹브라우저에 보여줌
+
+	ServletOutputStream out = response.getOutputStream()
+	response.setContentType("image/png");
+	ChartUtilities.writeChartAsPNG(out, chart, 400, 400)
+	
+5. Chart를 만듦(PieChart : 원형차트)
