@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>ELProject</display-name>
+  <display-name>JSTLProject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,29 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
-  <jsp-config>
-  <!-- function (1) -->
-  	<taglib>
-  	
-  		<!--jsp에서 해당 태그 라이브러리를 참조할때 사용하는 식별자 -->
-  		<taglib-uri>/WEB-INF/tlds/el-functions.tld</taglib-uri>
-  		
-  		<!-- 태그 라이브러리를 기술한 TLD 파일의 위치를 명시 -->
-  		<taglib-location>
-  			/WEB-INF/tlds/el-functions.tld
-  		</taglib-location>
-  	</taglib>
-  	
-  	
-  	
-  	<!-- function (2) -->
-  	<!--  taglib를 추가함 -->
-  	
-  	
-  	
-  	
-  	
-  </jsp-config>
 </web-app>
