@@ -9,15 +9,29 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
+  <!-- 
   <servlet>
-  <servlet-name>controlOne</servlet-name>
-  <servlet-class>mvc.control.ControlServlet</servlet-class>
+    <servlet-name>controlOne</servlet-name>
+    <servlet-class>mvc.control.ControlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controlOne</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+   -->
+  <servlet>
+	  <servlet-name>ControllerURI</servlet-name>
+	  <servlet-class>mvc.Controller</servlet-class>
+	  
+	  <init-param>
+		  <param-name>propertyConfig</param-name>
+		  <param-value>Command.properties</param-value>
+	  </init-param>
   </servlet>
   
   <servlet-mapping>
-  <servlet-name>controlOne</servlet-name>
-  <url-pattern>*.do</url-pattern>
+	  <servlet-name>ControllerURI</servlet-name>
+	  <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
 </web-app>
