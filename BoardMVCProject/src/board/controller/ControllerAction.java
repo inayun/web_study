@@ -5,6 +5,8 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import board.action.CommandAction;
+
 //@WebServlet("/ControllerAction")
 public class ControllerAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -71,6 +73,7 @@ public class ControllerAction extends HttpServlet {
 				//생성한 객체를 Map 객체인 commandMap 객체에 저장
 				
 				commandMap.put(command, commandInstance);
+				
 			} catch(ClassNotFoundException e) {
 				throw new ServletException(e);
 			} catch(InstantiationException e) {
@@ -79,8 +82,6 @@ public class ControllerAction extends HttpServlet {
 				throw new ServletException(e);
 			}
 		}
-		
-		
 		
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -91,5 +92,27 @@ public class ControllerAction extends HttpServlet {
 	}
 	
 	protected void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//사용자의 분석을 처리
+		
+		String view = null;
+		CommandAction com = null;
+		
+		try {
+			String command = request.getRequestURI();
+			
+			if(command.indexOf(request.getContextPath()) == 0) {
+				command = command.substring(request.getContextPath().length());
+			}
+		
+			com = (CommandAction)commandMap.get(command);
+			view = com.requestPro(request, response);
+		} catch(Throwable e) {
+			throw new ServletException(e);
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);
+		
+		
 	}
 }
