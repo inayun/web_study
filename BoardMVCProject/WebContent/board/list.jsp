@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.List" %>
-
-<%
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	request.setAttribute("sdf", sdf);
-	
-%>
-     	
- 
  
 <!DOCTYPE html>
 <html>
@@ -24,7 +14,7 @@
 <table>
 	<tr>
 		<td align="right" bgcolor = "gray">
-			<a href="writeForm.jsp">글쓰기</a>	
+			<a href="/BoardMVCProject/board/writeForm.do">글쓰기</a>	
 		</td>
 	</tr>
 </table>
@@ -79,7 +69,7 @@
 			</c:if>		
 		
 		
-			<a href="content.jsp?num=${article.num}&pageNum=${currentPage}">
+			<a href="/BoardMVCProject/board/content.do?num=${article.num}&pageNum=${currentPage}">
 			${article.subject}</a>
 			
 			<c:if test="${article.readcount >= 20}">
@@ -93,8 +83,7 @@
 		</td>
 		
 		<td align="center" width="150">
-		
-		${sdf.format(article.regdate)}
+			${article.regdate}
 			
 		</td>
 	
@@ -107,15 +96,43 @@
 		</td>
 	</tr>
 
-
 		</c:forEach>
+		</table>
 	</c:otherwise>
 </c:choose>
 
 
-</table>
-
-
+  <c:if test="${count > 0}"> 
+     
+     <c:set var="imsi" value="${count % pageSize == 0 ?  0 : 1 }" />
+     <c:set var="pageCount" value="${count  / pageSize + imsi }" />
+     <c:set var="pageBlock" value="${3}"/>
+     
+     <fmt:parseNumber var="result" value="${(currentPage - 1) / pageBlock }"
+     integerOnly="true" />
+     
+     <c:set var="startPage" value="${result * pageBlock +1 }" />
+     <c:set var="endPage" value="${startPage + pageBlock -1 }" />
+                      
+                    <c:if test="${endPage > pageCount }">
+                         <c:set var="endPage" value="${pageCount }" />
+                    </c:if>  
+     
+     <c:if test="${startPage > pageBlock }">
+     
+       <a href="/BoardMVCProject/board/list.do?pageNum=${startPage-pageBlock}">[이전]</a>
+     
+     </c:if>
+     
+     <c:forEach var="i" begin="${startPage }" end="${endPage }">
+     
+     <a href="/BoardMVCProject/board/list.do?pageNum=${i}">[${i }]</a>
+     </c:forEach>
+            
+            <c:if test="${endPage < pageCount }">
+        <a href="/BoardMVCProject/board/list.do?pageNum=${startPage + pageBlock}">[다음]</a>
+     </c:if>
+  </c:if>
 	
 
 

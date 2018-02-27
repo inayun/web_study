@@ -242,4 +242,154 @@ public class BoardDAO {
 		 return article;
 	 } //getArticle()
 
+ 
+ public BoardVO updateGetArticle(int num) {
+	 
+	 Connection con = null;
+	 PreparedStatement pstmt = null;
+	 ResultSet rs = null;
+	 BoardVO article = null;
+	 
+	 try {
+		 con = ConnUtil.getConnection();
+		 pstmt = con.prepareStatement("select * from board where num = ?");
+		 pstmt.setInt(1,num);
+		 rs = pstmt.executeQuery();
+		 
+		 if(rs.next()) {
+			 
+			 article = new BoardVO();
+			 article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setEmail(rs.getString("email"));
+				article.setSubject(rs.getString("subject"));
+				article.setPass(rs.getString("password"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setRef(rs.getInt("ref"));
+				article.setStep(rs.getInt("step"));
+				article.setDepth(rs.getInt("depth"));
+				article.setRegdate(rs.getTimestamp("regdate"));
+				article.setContent(rs.getString("content"));
+				article.setIp(rs.getString("ip"));
+		 } 
+	 } catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try { rs.close();}catch(SQLException e) {}
+			}
+			if(pstmt != null) {
+				try { pstmt.close();}catch(SQLException e) {}
+			}
+			if(con != null) {
+				try { con.close();}catch(SQLException e) {}
+			}
+		}
+	 return article;
+ } //updateGetArticle()
+ 
+ public int updateArticle(BoardVO article) {
+		
+	 Connection con = null;
+	 PreparedStatement pstmt = null;
+	 ResultSet rs = null;
+	 
+	 String dbpasswd = "";
+	 int result = -1; //결과값
+	 
+	 try {
+		 con = ConnUtil.getConnection();
+		 pstmt = con.prepareStatement("select password from board where num=?");
+		 pstmt.setInt(1, article.getNum());
+		 rs = pstmt.executeQuery();
+		 
+		 if(rs.next()) {
+			 dbpasswd = rs.getString("password");
+			 if(dbpasswd.equals(article.getPass())) {
+				 //비밀번호 일치하는 경우 수정작업이 이루어짐
+				 
+				 pstmt= con.prepareStatement("update board set writer=?,email=?,subject=?,content=? where num=?");
+				 pstmt.setString(1, article.getWriter());
+				 pstmt.setString(2, article.getEmail());
+				 pstmt.setString(3, article.getEmail());
+				 pstmt.setString(4, article.getContent());
+				 pstmt.setInt(5, article.getNum());
+				 
+				 pstmt.executeUpdate();
+				 
+				 result = 1;
+			 } else {
+				 //비밀번호가 일치하지 않는 경우 0 return
+				 result = 0;
+			 }
+		 }
+		 
+	 }  catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try { rs.close();}catch(SQLException e) {}
+			}
+			if(pstmt != null) {
+				try { pstmt.close();}catch(SQLException e) {}
+			}
+			if(con != null) {
+				try { con.close();}catch(SQLException e) {}
+			}
+		}
+	 return result;
+} //updateArticle
+
+//비밀번호를 입력하고 삭제를 수행할 것이며 이 때 데이터베이스에 저장된 비밀번호와 비교해서 삭제를 처리함
+	public int deleteArticle (int num, String password) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String dbPass = "";
+		int result = -1;
+		
+		try {
+			con = ConnUtil.getConnection();
+			pstmt = con.prepareStatement("select password from board where num = ? ");
+			pstmt.setInt(1,num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbPass = rs.getString("password");
+				
+				if(password.equals(dbPass)) {
+					pstmt = con.prepareStatement("delete from board where num = ?");
+					pstmt.setInt(1, num);
+					pstmt.executeUpdate();
+					
+					result = 1; //삭제 성공
+				} else {
+					result = 0;
+				}
+			}
+			
+		}  catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try { rs.close();}catch(SQLException e) {}
+			}
+			if(pstmt != null) {
+				try { pstmt.close();}catch(SQLException e) {}
+			}
+			if(con != null) {
+				try { con.close();}catch(SQLException e) {}
+			}
+		}
+	 return result;
+		
+	}//deleteArticle
+
+ 
+
 }

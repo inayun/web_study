@@ -21,7 +21,7 @@
 		<td align="center" width="125">${article.num}</td>
 		
 		<td align="center" width="125" bgcolor="${value_c}"> 조회수  </td>
-		<td align="center" width="125">${article.readCount}</td>
+		<td align="center" width="125">${article.readcount}</td>
 	</tr>
 
 	<tr height="30">
