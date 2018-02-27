@@ -56,7 +56,6 @@ public class ListAction implements CommandAction {
 
 		//해당하는 목록 페이지로 리턴함
 		
-		
 		return "/board/list.jsp";
 	}
 

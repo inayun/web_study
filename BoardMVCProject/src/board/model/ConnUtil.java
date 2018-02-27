@@ -22,7 +22,7 @@ public class ConnUtil {
 		}
 	}
 	
-	public static Connection getConnetion() throws SQLException{
+	public static Connection getConnection() throws SQLException{
 		return ds.getConnection();
 	}
 }
