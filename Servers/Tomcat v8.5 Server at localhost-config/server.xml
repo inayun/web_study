@@ -148,10 +148,10 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-        <Context docBase="MemberMVC" path="/MemberMVC" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVC"/>
-    	<Context docBase="BoardMVC" path="/BoardMVC" reloadable="true" source="org.eclipse.jst.jee.server:BoardMVC"/>
+        
+    	
    
-   <Context docBase="CookiePage" path="/CookiePage" reloadable="true" source="org.eclipse.jst.jee.server:CookiePage"/><Context docBase="SessionPage" path="/SessionPage" reloadable="true" source="org.eclipse.jst.jee.server:SessionPage"/><Context docBase="FileUpDown" path="/FileUpDown" reloadable="true" source="org.eclipse.jst.jee.server:FileUpDown"/><Context docBase="FileDown" path="/FileDown" reloadable="true" source="org.eclipse.jst.jee.server:FileDown"/><Context docBase="JspChart" path="/JspChart" reloadable="true" source="org.eclipse.jst.jee.server:JspChart"/><Context docBase="ELProject" path="/ELProject" reloadable="true" source="org.eclipse.jst.jee.server:ELProject"/><Context docBase="JSTLProject" path="/JSTLProject" reloadable="true" source="org.eclipse.jst.jee.server:JSTLProject"/><Context docBase="MVCProject" path="/MVCProject" reloadable="true" source="org.eclipse.jst.jee.server:MVCProject"/><Context docBase="BoardMVCProject" path="/BoardMVCProject" reloadable="true" source="org.eclipse.jst.jee.server:BoardMVCProject"/></Host>
+   <Context docBase="MemberMVCProject" path="/MemberMVCProject" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVCProject"/><Context docBase="zigbo" path="/zigbo" reloadable="true" source="org.eclipse.jst.jee.server:zigbo"/></Host>
     </Engine>
   </Service>
 </Server>
