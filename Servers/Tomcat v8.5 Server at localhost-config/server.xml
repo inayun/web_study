@@ -151,7 +151,7 @@
         
     	
    
-   <Context docBase="MemberMVCProject" path="/MemberMVCProject" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVCProject"/><Context docBase="zigbo" path="/zigbo" reloadable="true" source="org.eclipse.jst.jee.server:zigbo"/></Host>
+   <Context docBase="MemberMVCProject" path="/MemberMVCProject" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVCProject"/><Context docBase="zigbo" path="/zigbo" reloadable="true" source="org.eclipse.jst.jee.server:zigbo"/><Context docBase="MemberMVC" path="/MemberMVC" reloadable="true" source="org.eclipse.jst.jee.server:MemberMVC"/><Context docBase="web_work" path="/web_work" reloadable="true" source="org.eclipse.jst.jee.server:web_work"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="receive.jsp" method="get" name="sulmon">
+<table border="1">
+
+<tr>
+	<th>이름</th>
+	<td><input type="text" name="username"></td>
+</tr>
+
+<tr>
+	<th>성별</th>
+	<td>
+		<select name="gender">
+			<option value="total">전체</option>
+			<option value="m">남성</option>
+			<option value="w">여성</option>
+		</select>
+	</td>
+</tr>
+
+<tr>
+	<th>취미</th>
+	<td>
+		<input type="checkbox" name="hobby" value="baseball">야구<br>
+		<input type="checkbox" name="hobby" value="soccer">축구<br>
+		<input type="checkbox" name="hobby" value="basketball">농구<br>
+	</td>
+</tr>
+
+<tr>
+	<th>주택</th>
+	<td>
+		<input type="radio" name="house" value="own">자가
+		<input type="radio" name="house" value="charter">전세
+		<input type="radio" name="house" value="monthlyrent">월세
+	</td>
+</tr>
+
+<tr align="center">
+	<td colspan="2">
+		<input type="submit" value="보내기">
+		<input type="reset" value="리셋">
+	</td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>
