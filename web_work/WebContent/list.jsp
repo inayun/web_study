@@ -7,27 +7,44 @@
 <html>
 <head>
 <title></title>
-<script type="text/javascript" src="httpRequest.js">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script type="text/javascript" src="httpRequest.js">
 	//Ajax 연동을 위해 미리 준비한 httpRequest.js를 참조
 </script>
-
+ -->
 <script type="text/javascript">
+
+
 
 function goPage(num){
 	
-
-	var url = "PagingAction";
-	var param = "url=tableboard.jsp"+"&totalCount="+${totalCount}+"&pagepageCount="+${pagepageCount}+"&pageboardCount="+${pageboardCount}+"&curPage="+num;
-	sendRequest(url,param,resultFn,"POST");
-}
-
-function resultFn(){
+	$.ajax({
+		
+		url : "PagingAction",
+		data : {
+			
+			"url" : "tableboard.jsp",
+			"totalCount" : ${totalCount},
+			"pagepageCount" : ${pagepageCount},
+			"pageboardCount" : ${pageboardCount},
+			"curPage" : num
+		},
+		
+		method : "post",
+		dataType : "html",
+		success : function(result){
+			$("#board").html(result);
+		}
 	
-	if(xhr.readyState == 4 && xhr.status == 200){
-		var data = xhr.responseText;
-		document.getElementById("board").innerHTML = data;
-	}
+	});
+	
 }
+
+
+
+
+
+
 
 </script>
 </head>
@@ -47,6 +64,8 @@ function resultFn(){
 </c:forEach>
 
 ${page}
+
+
 </div>
 
 

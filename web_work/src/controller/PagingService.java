@@ -28,37 +28,48 @@ public class PagingService {
 	      
 	        StringBuffer stringBuffer = new StringBuffer();
 	      String result = "";
+	      int temp = 0;
 	   
 	      int page = (totalCount % countUnit == 0 ? totalCount / countUnit : totalCount / countUnit + 1);
 	      // 총 글 수를 단위로 나누었을때 맞아떨어지지 않으면 +1을 한다.
 
-	      // -------------------------시작점, 끝점을 알기 위한 계산-------------------------
-	      int end = (currentCount / unitCount) + 1;
-	      if (currentCount % unitCount == 0)
-	         end--;
-	      int endNum = end * unitCount;
-	      int startNum = endNum - unitCount + 1;
-
-	      if (currentCount > unitCount) {
-	         stringBuffer.append("<<");
-	      }
-	      //--------------------시작 숫자부터 마지막 숫자까지 순환----------------------
-	      for (int i = startNum; i <= page; i++) {
-	      //지금 페이지 표시
-	         if (i <= unitCount * end) {
-	            if (currentCount == i) {
-	               stringBuffer.append("[" + i + "] ");
-	            } else {
-	               stringBuffer.append("<a href='javascript:goPage("+ i + ")'>" + i + "</a> " );
-	            }
-	         } else {
-	            stringBuffer.append(">>");
-	            break;
+	   // -------------------------시작점, 끝점을 알기 위한 계산-------------------------
+	         int end = (currentCount / unitCount) + 1;
+	         if (currentCount % unitCount == 0)
+	            end--;
+	         int endNum = end * unitCount;
+	         int startNum = endNum - unitCount + 1;
+	         int formal = 0; //이전 화살표의 목표번호 값이 얼마인가 나중에 대입해줄때 필요한 변수
+	         stringBuffer.append("<p id='down'>");
+	           
+	         if (currentCount > unitCount) {
+	            stringBuffer.append("<a href='javascript:goPage("+(startNum-1)+")'> << &nbsp &nbsp</a>");
 	         }
+	         //--------------------시작 숫자부터 마지막 숫자까지 순환----------------------
+	         for (int i = startNum; i <= page; i++) {
+	         //지금 페이지 표시
+	            if (i <= unitCount * end) {
+	               if (currentCount == i) {
+	              
+	                  stringBuffer.append("[" + i + "]&nbsp &nbsp");
+	               
+	               
+	               } else {
+	               
+	                  stringBuffer.append("<a href='javascript:goPage("+i+")'>"+i+"&nbsp &nbsp</a>");
+	               
+	               
+	               }
+	               
+	            } else {
+	               stringBuffer.append("<a href='javascript:goPage("+(i)+")'> >> &nbsp &nbsp</a>");
+	               break;
+	            }
+	         }
+	         stringBuffer.append("</p>");
+	         return stringBuffer.toString();
 	      }
-	      return stringBuffer.toString();
-	   }
-	   //-----------------------------------------------------------------------------------------
+	      //-----------------------------------------------------------------------------------------
 	
 	
 }
