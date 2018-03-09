@@ -14,6 +14,7 @@
 페이지당 페이지수 : <input type="text" name="pagepageCount" > <br>
 패이지당 게시물수 : <input type="text" name="pageboardCount" > <br>
 현재 페이지 : <input type="text" name="curPage" > <br>
+<input type="hidden" name="url" value="list.jsp" >
 
 <input type="submit" value="보내기">
 

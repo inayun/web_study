@@ -7,37 +7,49 @@
 <html>
 <head>
 <title></title>
-</head>
-<body>
-
-
-게시글
-<br>
-
-
-<c:forEach var="board" step="1" begin="${lastNum-pageboardCount+1}" end="${lastNum}" >
-	${board}<br>
-</c:forEach>
-
-
-${page}
-
-<form id="pageForm" action="PagingAction" method="post">
-<input type="hidden" name="totalCount" value="${totalCount}" > <br>
-<input type="hidden" name="pagepageCount" value="${pagepageCount}"> <br>
-<input type="hidden" name="pageboardCount" value="${pageboardCount}"> <br>
-<input id="clickNum" type="hidden" name="curPage" value=""> <br>
-</form>
+<script type="text/javascript" src="httpRequest.js">
+	//Ajax 연동을 위해 미리 준비한 httpRequest.js를 참조
+</script>
 
 <script type="text/javascript">
 
 function goPage(num){
 	
-	document.getElementById("clickNum").value = num;
-	document.getElementById("pageForm").submit();
+
+	var url = "PagingAction";
+	var param = "url=tableboard.jsp"+"&totalCount="+${totalCount}+"&pagepageCount="+${pagepageCount}+"&pageboardCount="+${pageboardCount}+"&curPage="+num;
+	sendRequest(url,param,resultFn,"POST");
 }
 
+function resultFn(){
+	
+	if(xhr.readyState == 4 && xhr.status == 200){
+		var data = xhr.responseText;
+		document.getElementById("board").innerHTML = data;
+	}
+}
 
 </script>
+</head>
+
+<body>
+
+게시글
+<br>
+
+<div id="board">
+
+
+<c:forEach var="board" step="1" begin="${lastNum-pageboardCount+1}" end="${lastNum}" >
+	<c:if test="${board < totalCount}">
+		${board}<br>
+	</c:if>
+</c:forEach>
+
+${page}
+</div>
+
+
+
 </body>
 </html>

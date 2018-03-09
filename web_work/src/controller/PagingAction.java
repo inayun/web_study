@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.PagingService;
 
-@WebServlet("/PagingAction")
+//@WebServlet("/PagingAction")
 public class PagingAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,6 +34,9 @@ public class PagingAction extends HttpServlet {
 	      currentCount                          // 지금 사용자가 조회하고있는 페이지.
 		
 		*/
+		
+		String url = request.getParameter("url");
+		System.out.println(url);
 		int totalCount = Integer.parseInt(request.getParameter("totalCount"));
 		int pagepageCount =  Integer.parseInt(request.getParameter("pagepageCount"));
 		int pageboardCount = Integer.parseInt(request.getParameter("pageboardCount"));
@@ -51,9 +54,7 @@ public class PagingAction extends HttpServlet {
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("lastNum", lastNum);
 		
-		RequestDispatcher ds = request.getRequestDispatcher("list.jsp");
-		ds.forward(request, response);
-		
+		request.getRequestDispatcher(url).forward(request, response);
 		
 	}
 }
