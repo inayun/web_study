@@ -151,7 +151,7 @@
         
     	
    
-   <Context docBase="web_work" path="/web_work" reloadable="true" source="org.eclipse.jst.jee.server:web_work"/></Host>
+   <Context docBase="Paging" path="/Paging" reloadable="true" source="org.eclipse.jst.jee.server:Paging"/></Host>
     </Engine>
   </Service>
 </Server>

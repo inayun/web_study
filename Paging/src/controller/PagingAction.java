@@ -35,13 +35,10 @@ public class PagingAction extends HttpServlet {
 		
 		*/
 		
-		String url = request.getParameter("url");
-		System.out.println(url);
 		int totalCount = Integer.parseInt(request.getParameter("totalCount"));
 		int pagepageCount =  Integer.parseInt(request.getParameter("pagepageCount"));
 		int pageboardCount = Integer.parseInt(request.getParameter("pageboardCount"));
 		int curPage =  Integer.parseInt(request.getParameter("curPage"));
-		System.out.println(curPage);
 		
 		String pageResult = PagingService.pageDivider(totalCount, pageboardCount, pagepageCount, curPage);
 		request.setAttribute("page", pageResult);
@@ -54,7 +51,7 @@ public class PagingAction extends HttpServlet {
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("lastNum", lastNum);
 		
-		request.getRequestDispatcher(url).forward(request, response);
-		
+		request.getRequestDispatcher("tableboard.jsp").forward(request, response);
 	}
+	
 }
