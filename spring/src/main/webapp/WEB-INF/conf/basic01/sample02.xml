@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	">
+
+	<context:property-placeholder location="classpath:basic01/send.properties"/>
+
+<!--  xmlns:p 의  p를 사용함 
+p:sendTime
+-->
+	<bean id="receiver" class="com.example.spring.basic01.Receiver"
+	p:sendTime="55">
+		<property name="sender">
+		<!-- 임의 밴 객체 -->
+		<bean class="com.example.spring.basic01.Sender">
+			<constructor-arg value="true"/>
+		</bean>		
+		</property>
+	</bean>
+
+</beans>

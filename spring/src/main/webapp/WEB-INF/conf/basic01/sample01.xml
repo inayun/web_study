@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	">
+
+	
+	<!-- classpath 잡을 때 주의할 것 
+		
+		buildPath에서 conf/basic01까지 잡아서 중복남
+	-->
+	<context:property-placeholder location="classpath:basic01/send.properties"/>
+	
+	
+	<!-- value는  String으로 들어옴 
+	ref랑 맞춰줘야함. ref = senderrrr            id=senderrrr
+	-->
+	
+	<!-- 
+	Sender sender;
+	
+	public Receiver(String arg){
+	}
+	
+	public getSender(){
+		return this.sender;
+	}
+	
+	public setSender(Sender sender){
+		this.sender = sender;
+	}
+	 -->
+	 
+	<bean name="receiver" class="com.example.spring.basic01.Receiver">
+		<constructor-arg value="${send.sendTime}"/> 
+		<property name="sender" ref="sender"/>	
+	</bean>
+	
+	<bean id="sender" class="com.example.spring.basic01.Sender">
+		<constructor-arg value="true"/>	
+	</bean>
+
+
+</beans>
