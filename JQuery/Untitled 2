@@ -1,0 +1,154 @@
+<script>$("form input").css("border", "2px dotted blue");
+</script>
+
+
+<form>
+<input>
+
+<fieldset>
+<input>
+</fieldset>
+
+</form>
+
+$("A+B")
+A와 동일한 레벨중에서 바로 밑에 존재하는 B요소를 검색
+$("label + input").css
+
+
+$("A~B")
+A와 동일한 레벨중에서 밑에 있는 것들 전부다 
+$(label ~ input).css
+
+input : checked + span
+input : not ( : checked) + span
+
+$("input").attr("disable" , "disabled");
+
+//td중에 0번째
+$("td:eq(0)")
+//2번째보다 큰거에만 적용
+$("td:gt(2)")
+
+//td안에 2를 포함하고 있는것
+$("td:contains('2')")
+
+//태그 안에 값들이 비어있는 것들에 값 입력
+<td></td>
+$("td:empty").text("new input text")
+
+div안에 p태그가 존재하는 것들을 다 찾음
+$("div : has(p)").css("color","red");
+
+//값들이 여러개 들어가있음
+
+<form>
+	<div style="display:none"></div>
+	<input type="hidden">
+	<input type="hidden">
+	<input type="hidden">
+</form>
+var hiddenElement = $("form").find(" :hidden ");
+//hiddenElement.length = 3개
+
+
+<div>
+	<span>1</span>
+	<span>2</span>
+	<span>3</span>
+</div>
+
+<div>
+	<span>4</span>
+	<span>5</span>
+	<span>6</span>
+</div>
+$("div span : first-child ").css("color","red")
+// 1이랑 4 출력
+
+
+<div>id 속성 없음</div>
+<div id="id1"> id속성 존재1</div>
+<div id="id2">id속성 존재2</div>
+<div></div>
+
+$("div[id]").one('click', function(){
+	var str = $(this).text() + "=" + $(this).attr('id');
+	$(this).text(str);
+// id속성 존재1 = id1
+// id속성 존재2 = id2
+})
+
+//iid가 id2인 div
+$("div[id='id2']")
+
+//name이 nm인  input
+$("input[name='nm]")
+
+
+<input type="radio" name="first" value="firstValue">
+<span>not</span>
+$("input[value='firstValue']").next().text('changed');
+// span 태그의 not이 changed로 바뀜
+
+
+//name이 first가 아닌 다른 모든것들을 다 찾음
+$("input[name != 'first' ]")
+
+//  ^=  name이 l로 시작된것  last....
+$("input[name ^= 'l' ]")
+
+//  $= name이 t로 끝나는 것 first, last...... 
+$("input[name $= 't' ]")
+
+//  *= name이 a를 포함하고있는 것 last
+$("input[name *= 'a' ]")
+
+
+//input 태그 개수..
+$("#message").text($("input").length);
+
+var textLength = $("input : text" , document.forms[1]).length;
+
+
+<body>
+<div></div>
+<div></div>
+</body>
+
+$(document.body).click(function(){
+	$("div").each(function(index){
+		if(this.style.color = "blue"){
+			this.style.color=""; 
+		}else {
+			this.style.color ="blue" ;}
+
+	if( index == 2 ){
+		$(this).text('2dfd')}
+		
+})
+})
+
+//밸류값 변경
+.val 
+
+//속성값 변경 (name = "nm1") (title = "current")
+.attr
+
+
+//index가 돌때마다 하나의 객체 item을 리턴해줌
+var arrList = $("#myTable tr");
+$.each(arrList, function(index,item){
+	if(index == 1){
+		$(item).hide(); 
+}
+
+
+var select = document.createElement("select");
+var options = document.createElement("option");
+options.value="1";
+options.appendChild(document.createTextNode("first"));
+select.appendChild(options);
+
+$(#btn).append(select);
+})
