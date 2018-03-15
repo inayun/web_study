@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 아이디는 하나로 주고 alias를 사용해서 여러개의 별칭 사용 가능  -->
+	<!-- name1, name2, name3, name4, namex1, namex2 다 사용가능 -->
+	<!-- id는 무조건 하나만 기입 .  name에는 여러개 사용 가능 -->
+	<bean id="name1" name="name2,name3,name4" class="java.lang.String" />
+
+	<!-- id랑 name 매칭 -->
+	<alias name="name1" alias="namex1" />
+	<alias name="name1" alias="namex2" />
+
+</beans>
