@@ -1,5 +1,7 @@
 package com.example.spring.basic02;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +16,13 @@ import org.springframework.core.io.ClassPathResource;
 
 public class Sample01{
 
-
+	
 	private Map map;
 	private Properties props;	
 	private Set set;
 	private List list;
 	
-	
+
 	public Map getMap() {
 		return map;
 	}
@@ -53,7 +55,6 @@ public class Sample01{
 		this.list = list;
 	}
 
-
 	public static void main(String[] args){
 
 		BeanFactory factory = new XmlBeanFactory(new ClassPathResource("basic02/sample01.xml"));
@@ -73,8 +74,10 @@ public class Sample01{
 			while(i.hasNext()){
 				Object key = i.next();
 				System.out.println("\nKey:" + key + "- value : " + map.get(key));
+				
 			}
 
+			
 			//display the properties
 			i = props.keySet().iterator();
 			System.out.println("\n Properties 내용:\n");
