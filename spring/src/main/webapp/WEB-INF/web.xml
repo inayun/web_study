@@ -13,10 +13,13 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       
-      <!-- 
-      <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-       -->
-      <param-value>/WEB-INF/spring/appServlet/paging-servlet-context.xml</param-value>
+
+     <!-- <param-value>/WEB-INF/spring/appServlet/paging-servlet-context.xml</param-value> -->
+     <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
+     <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context2.xml</param-value> -->
+     <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context3.xml</param-value> -->
+      <param-value>/WEB-INF/spring/appServlet/servlet-context4.xml</param-value>
+      
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
