@@ -9,7 +9,8 @@
 <body>
 
 id : ${id} <br>
-name : ${name} 
+name : ${name} <br>
+hobby : ${hobby}
 
 </body>
 </html>

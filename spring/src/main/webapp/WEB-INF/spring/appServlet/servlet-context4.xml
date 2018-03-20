@@ -24,7 +24,7 @@
 
 	<!-- autowired 속성 
 	어디 패키지부터 빈으로 등록할 클래스를 찾을것인가
-	spring 아래에 믈래스들을 다 뒤져서 @autowired 찾음
+	spring 아래에 클래스들을 다 뒤져서 @autowired 찾음
 	-->
 	<context:component-scan base-package="com.example.spring"></context:component-scan>
 
