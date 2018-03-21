@@ -7,6 +7,8 @@ public class Member {
 	String email;
 	String name;
 	String[] hobby;
+	String animal;
+	String gender;
 	
 	
 	public String getId() {
@@ -39,6 +41,21 @@ public class Member {
 	public void setHobby(String[] hobby) {
 		this.hobby = hobby;
 	}
+	public String getAnimal() {
+		return animal;
+	}
+	public void setAnimal(String animal) {
+		this.animal = animal;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
+	
 	
 	
 }
