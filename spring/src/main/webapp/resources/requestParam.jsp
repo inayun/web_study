@@ -5,7 +5,7 @@
 <head>
 <title></title>
 
-<!--  jQuery.form.js 검색 -->
+<!-- 인터넷에 jQuery.form.js 검색 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript">

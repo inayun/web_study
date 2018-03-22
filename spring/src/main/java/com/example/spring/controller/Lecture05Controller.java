@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.spring.controller.service.Lecture05Service;
 import com.example.spring.entity.Member;
 
 
@@ -23,8 +26,11 @@ public class Lecture05Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Lecture05Controller.class);
 	
+	@Autowired
+	Lecture05Service lecture05Service;
 	
 	
+	//-----------------------------------------------------------
 	@RequestMapping(value = "/requestParam.do")
 	public String home(
 			@RequestParam(value="id", defaultValue = "hong") String id,
@@ -159,6 +165,18 @@ public class Lecture05Controller {
 		
 		return map; //{"success","true"} 형식으로 보내짐
 	}
-	
+
+
+	@RequestMapping(value="/lecture05/ajaxFileUpload.do")
+	public @ResponseBody HashMap<String,String> ajaxFileUpload(
+			@RequestParam HashMap<String,String> params,
+			//required 의 초기값은 true인데  false = 서버에서 파일이 안넘어와도 상관없다고 지정
+			@RequestParam(value="file_test", required=false) List<MultipartFile> fileList,
+			Model model) {
+		
+
+		return lecture05Service.ajaxFileUpload(fileList);
+		
+	}
 }
 
