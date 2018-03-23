@@ -14,22 +14,24 @@ import com.example.spring.dao.sample.SampleDao;
 
 @Service
 public class SampleService {
-	
+	//비즈니스 로직 처리하는 곳
 	private static final Logger logger = LoggerFactory.getLogger(SampleService.class);
 
 	@Autowired
 	SampleDao sampleDao;
 	
 	
-	public ModelAndView sampleList(HashMap<String,String> map) {
+	public List sampleList(HashMap<String,String> map) {
 		
 		List<HashMap<String,Object>> list = sampleDao.sampleList(map); 
 		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("list",list);
-		mv.setViewName("sample/sampleList"); //sampleList.jsp
-		
-		return mv;
+		return list;
 	}
 	
+	public int sampleCount(HashMap<String,String> map) {
+		
+		int cnt = sampleDao.sampleCount(map); 
+		
+		return cnt;
+	}
 }

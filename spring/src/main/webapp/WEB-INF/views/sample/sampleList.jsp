@@ -13,5 +13,9 @@
 </c:forEach>
 
 
+
+
+<p> 조회 카운트 : ${cnt}
+
 </body>
 </html>

@@ -23,6 +23,7 @@
 	<mappers>
 		
 		<mapper resource="com/example/spring/test/testMapper.xml"/>
+		<!-- 여기에 여러개 넣음 -->
 	
 	</mappers>
 	

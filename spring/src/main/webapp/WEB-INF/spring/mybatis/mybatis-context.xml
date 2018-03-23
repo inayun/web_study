@@ -19,6 +19,7 @@
 
 
 	<!-- SpEL 설정 -->	
+	<!-- 내 디비에 대한 정보 -->
 	<!-- <util:properties id="comm" location="/WEB-INF/conf/${server.mode}/properties.xml" /> -->
 	<util:properties id="comm" location="/WEB-INF/conf/local/properties.xml" />
 	
