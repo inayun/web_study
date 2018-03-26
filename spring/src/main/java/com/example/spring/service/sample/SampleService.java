@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.spring.controller.sample.SampleController;
 import com.example.spring.dao.sample.SampleDao;
+import com.example.spring.entity.SampleEntity;
 
 @Service
 public class SampleService {
@@ -28,10 +29,36 @@ public class SampleService {
 		return list;
 	}
 	
+	public SampleEntity sampleVOList(SampleEntity sampleEntity) {
+		
+		return sampleDao.sampleVOList(sampleEntity);
+	}
+	
+	
 	public int sampleCount(HashMap<String,String> map) {
 		
 		int cnt = sampleDao.sampleCount(map); 
 		
 		return cnt;
 	}
+	
+	
+	public int sampleInsert(HashMap<String,String> map) {
+		
+		return sampleDao.sampleInsert(map);
+	}
+	
+	
+	public int sampleUpdate(HashMap<String,String> map) {
+			
+		return sampleDao.sampleUpdate(map);
+	}
+	
+	
+	public int sampleDelete(HashMap<String,String> map) {
+		
+		return sampleDao.sampleDelete(map);
+	}
+
+
 }

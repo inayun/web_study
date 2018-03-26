@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.spring.entity.SampleEntity;
 import com.example.spring.service.sample.SampleService;
 
 @Controller
@@ -58,7 +59,92 @@ public class SampleController {
 		mv.addObject("cnt",cnt);
 		mv.setViewName("sample/sampleList"); //sampleList.jsp
 		
+		return mv; //서비스에서 iv가 리턴되서 그게 컨트롤러에서 그대로 다시 리턴됨
+	}
+	
+	@RequestMapping(value="/sampleVOList.do")
+	public @ResponseBody ModelAndView sampleVOList(HttpServletRequest request) {
+		
+		SampleEntity sampleEntity = new SampleEntity();
+		sampleEntity.setDeptNo("10");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("sampleEntity",sampleService.sampleVOList(sampleEntity));
+		mv.setViewName("sample/sampleList"); //sampleList.jsp
+		
+		
 		return mv; //서비스에서 mv가 리턴되서 그게 컨트롤러에서 그대로 다시 리턴됨
 	}
 	
+	
+	@RequestMapping(value="/sampleInsert.do")
+	public @ResponseBody HashMap<String,String> sampleInsert(HttpServletRequest request) {
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("deptNo",request.getParameter("deptNo"));
+		map.put("dName",request.getParameter("dName"));
+		map.put("loc",request.getParameter("loc"));
+		
+		
+		
+		/*
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("cnt",sampleService.sampleInsert(map));
+		mv.setViewName("sample/sampleResult"); //sampleList.jsp
+		
+		*/
+		map.put("result","입력실패");
+		int cnt = sampleService.sampleInsert(map);
+		if(cnt > 0 ) {
+			map.put("result", "입력완료");
+		}
+		
+		return map; //서비스에서 iv가 리턴되서 그게 컨트롤러에서 그대로 다시 리턴됨
+	}
+	
+	
+	@RequestMapping(value="/sampleDelete.do")
+	public @ResponseBody HashMap<String,String> sampleDelete(HttpServletRequest request) {
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("deptNo",request.getParameter("deptNo"));
+		
+		/*
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("cnt",sampleService.sampleDelete(map));
+		mv.setViewName("sample/sampleResult"); //sampleList.jsp
+		*/
+		
+		map.put("result","삭제실패");
+		int cnt = sampleService.sampleDelete(map);
+		if(cnt > 0 ) {
+			map.put("result", "삭제완료");
+		}
+		
+		return map; //서비스에서 iv가 리턴되서 그게 컨트롤러에서 그대로 다시 리턴됨
+	}
+	
+	
+	@RequestMapping(value="/sampleUpdate.do")
+	public @ResponseBody HashMap<String,String> sampleUpdate(HttpServletRequest request) {
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("deptNo",request.getParameter("deptNo"));
+		map.put("dName",request.getParameter("dName"));
+		map.put("loc",request.getParameter("loc"));
+		
+		/*
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("cnt",sampleService.sampleUpdate(map));
+		mv.setViewName("sample/sampleResult"); //sampleList.jsp
+		
+		*/
+		map.put("result","수정실패");
+		int cnt = sampleService.sampleUpdate(map);
+		if(cnt > 0 ) {
+			map.put("result", "수정완료");
+		}
+		
+		return map; //서비스에서 iv가 리턴되서 그게 컨트롤러에서 그대로 다시 리턴됨
+	}
 }

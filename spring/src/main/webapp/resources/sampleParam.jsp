@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 
-	function ajaxSubmit(formId){
+	function ajaxSearch(formId){
 		$('#'+formId).ajaxForm({
 			
 			type: "post",
@@ -27,8 +27,6 @@
 						$("#resultSection").append(value+" ")
 					})
 				});
-				
-				
 			},
 			error: function(result){
 			}
@@ -37,6 +35,59 @@
 		
 	}
 
+	
+	function ajaxInsert(formId){
+		$('#'+formId).ajaxForm({
+			
+			type: "post",
+			url : "/sampleInsert.do",
+			datatype: "json",
+			success: function(result){
+				$("#resultSection").empty();
+				$("#resultSection").append(result.result);
+			
+			},
+			error: function(result){
+			}
+			
+		}).submit();
+		
+	}
+	
+	function ajaxUpdate(formId){
+		$('#'+formId).ajaxForm({
+			
+			type: "post",
+			url : "/sampleUpdate.do",
+			datatype: "json",
+			success: function(result){
+				$("#resultSection").empty();
+				$("#resultSection").append(result.result);
+			},
+			error: function(result){
+			}
+			
+		}).submit();
+		
+	}
+	
+	
+	function ajaxDelete(formId){
+		$('#'+formId).ajaxForm({
+			
+			type: "post",
+			url : "/sampleDelete.do",
+			datatype: "json",
+			success: function(result){
+				$("#resultSection").empty();
+				$("#resultSection").append(result.result);
+			},
+			error: function(result){
+			}
+			
+		}).submit();
+		
+	}
 </script>
 
 </head>
@@ -45,12 +96,18 @@
 
 <form id="frm">
 
-<p> 부서코드 : 
-<input type="text" name="deptNo">
-<input type="button" value="조회" onclick="javascript:ajaxSubmit('frm')" />
+<p> 부서코드 : <input type="text" name="deptNo">
+<p> 부서이름 : <input type="text" name="dName">
+<p> 위치 : <input type="text" name="loc">
+<br>
+
+<input type="button" value="조회" onclick="javascript:ajaxSearch('frm')" />
+<input type="button" value="삽입" onclick="javascript:ajaxInsert('frm')" />
+<input type="button" value="수정" onclick="javascript:ajaxUpdate('frm')" />
+<input type="button" value="삭제" onclick="javascript:ajaxDelete('frm')" />
 
 </form>
-
+<br>
 
 <div id="resultSection">
 <P>출력되는 부분

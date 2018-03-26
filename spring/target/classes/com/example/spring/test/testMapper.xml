@@ -35,10 +35,18 @@
 	
 	</select>
 	
+	<select id="testVOList" parameterType="com.example.spring.entity.SampleEntity" resultType="com.example.spring.entity.SampleEntity">
+		<!-- /test/testMapper.xml - testVOList ( 테스트 조회 ) -->
+		SELECT
+				DEPTNO AS deptNo                               <!--  부서코드  -->
+				,DNAME AS dName                                <!-- DNAME_ID -->
+				,LOC AS loc                                    <!--  LOC  -->
+		FROM    DEPT        <!--   DEPT Table  -->
 	
-	
-	
-	
+	<if test = 'deptNo != null and deptNo !="" '>
+			WHERE DEPTNO = #{deptNo}
+	</if>
+	</select>
 	
 	<select id="testCount" parameterType="HashMap" resultType="Integer">
 		<!-- /test/testMapper.xml - testCount ( 테스트 Count 조회 ) -->
@@ -46,12 +54,33 @@
 				COUNT(*) AS CNT							<!-- 데이터 개수 조회 -->
 		FROM    EMP        								<!--   EMP Table  -->
 		WHERE DEPTNO = #{deptNo}
-	
-	
-	
-	
-	
 	</select>
+	
+	
+	
+	<insert id="testInsert" parameterType="HashMap">
+	
+		INSERT INTO DEPT
+		(DEPTNO, DNAME, LOC)VALUES(#{deptNo},#{dName},#{loc})
+	
+	</insert>
+	
+	<update id="testUpdate" parameterType="HashMap">
+		UPDATE DEPT
+		SET DETPNO = #{deptNo},
+			DNAME = #{dName},
+			LOC = #{loc}
+		WHERE DEPTNO = #{deptNo}
+	</update>
+	
+	<delete id="testDelete" parameterType="HashMap">
+		DELETE
+		FROM DEPT
+		WHERE DEPTNO = #{deptNo}
+	
+	</delete>
+	
+	
 	
 	
 </mapper>

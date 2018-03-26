@@ -7,7 +7,7 @@
 <title></title>
 </head>
 <body>
-
+<%-- 
 <c:forEach var="data" items="${list}">
 <p> ${data.DEPTNO} &nbsp&nbsp ${data.DNAME} &nbsp&nbsp ${data.LOC}
 </c:forEach>
@@ -16,6 +16,15 @@
 
 
 <p> 조회 카운트 : ${cnt}
+
+ --%>
+<hr>
+
+${sampleEntity.deptNo}
+${sampleEntity.dName}
+${sampleEntity.loc}
+
+
 
 </body>
 </html>
