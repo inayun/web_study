@@ -67,7 +67,7 @@
 	
 	<update id="testUpdate" parameterType="HashMap">
 		UPDATE DEPT
-		SET DETPNO = #{deptNo},
+		SET 
 			DNAME = #{dName},
 			LOC = #{loc}
 		WHERE DEPTNO = #{deptNo}
