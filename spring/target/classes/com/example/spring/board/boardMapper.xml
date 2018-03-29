@@ -13,6 +13,14 @@
 	</insert>
 
 
+	<select id="boardCount" resultType="Integer">
+		SELECT
+				COUNT(*) AS CNT							
+		FROM    BOARD        								
+		WHERE DEL_YN='n'
+	</select>
+	
+
 	<select id="boardList" resultType="HashMap">
 	
 		SELECT 
@@ -27,6 +35,7 @@
 		DEL_YN AS delYN
 		FROM BOARD
 		WHERE DEL_YN='n'
+		ORDER BY BOARD_NUM DESC
 	
 	</select>
 	
@@ -53,11 +62,32 @@
 			<when test="searchScope=='writer'">
 				WHERE CREATE_WRITER LIKE #{searchInput} AND DEL_YN='n' 
 			</when>
-		
 		</choose>
+	
+		ORDER BY BOARD_NUM DESC
+	</select>
+	
+	
+	
+	
+	<select id="boardSearchCount" parameterType="HashMap" resultType= "Integer">
+	
+		SELECT 
+		COUNT(*) AS CNT
+		FROM BOARD
 		
+		<choose>
+			<when test="searchScope=='title'">
+				WHERE BOARD_TITLE LIKE #{searchInput} AND DEL_YN='n'
+			</when>
+			
+			<when test="searchScope=='writer'">
+				WHERE CREATE_WRITER LIKE #{searchInput} AND DEL_YN='n'
+			</when>
+		</choose>
 	
 	</select>
+	
 	
 		<select id="boardDetail" parameterType="HashMap" resultType="HashMap">
 	

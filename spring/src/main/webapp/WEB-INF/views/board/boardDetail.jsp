@@ -80,19 +80,7 @@
 </form>
 
 
-<form action="/boardList.do">
-	<input type="submit" value="글 목록보기">
-</form>
-
-
-
-
-
-
-
-
-
-
+<a href="/boardList.do?curPage=${curPage}"/>글 목록보기</a>
 
 
 

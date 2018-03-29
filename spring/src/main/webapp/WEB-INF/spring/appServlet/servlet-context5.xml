@@ -5,16 +5,17 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 	<annotation-driven></annotation-driven>
 	
 	<resources mapping="/resources/**" location="/resources/" />
-	
-	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -23,10 +24,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
-	<!-- resources 에서 view 페이지로 갈때 -->
-	<mvc:view-controller path="/boardInsert" view-name="board/boardInsert" />
-
 
 	<!-- autowired 속성 
 	어디 패키지부터 빈으로 등록할 클래스를 찾을것인가
@@ -37,5 +34,25 @@
 	<!-- 멀티 업로드용 -->
 	<beans:bean id="multipartResolver" 
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	
+	<!-- 인터셉터 -->
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 모든 경로에 대해서 실행 -->
+			<mvc:mapping path="/**/"/>
+			
+			<!-- 인터셉터를 제외할 경로 -->
+			 <mvc:exclude-mapping path="/login/**"/>
+			 
+			<!-- 적용될 인터셉터 클래스 등록 -->
+			<beans:bean id="commonInterceptor" class="com.example.spring.common.CommonInterceptor"></beans:bean>
+		
+		</mvc:interceptor>
+	
+	</mvc:interceptors>
+	
+	
 	
 </beans:beans>

@@ -14,7 +14,7 @@ import com.example.spring.dao.sample.SampleDao;
 @Repository
 public class BoardDao {
 
-	private static final Logger logger = LoggerFactory.getLogger(SampleDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardDao.class);
 	
 	@Autowired
 	SqlSession sqlSession;
@@ -34,6 +34,24 @@ public class BoardDao {
 		
 		 return this.sqlSession.selectList("board.boardList");
 	}
+	
+	/*
+	 * 게시글 전체 개수 
+	 */
+	public int boardCount() {
+
+		return this.sqlSession.selectOne("board.boardCount"); 
+	}
+	
+	
+	/*
+	 * 게시글 검색에 따른 개수 
+	 */
+	public int boardSearchCount(HashMap<String,String> map) {
+
+		return this.sqlSession.selectOne("board.boardSearchCount",map); 
+	}
+	
 	
 	/*
 	 * 검색영역에 따른 검색결과

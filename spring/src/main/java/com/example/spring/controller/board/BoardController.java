@@ -15,15 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.spring.controller.sample.SampleController;
 import com.example.spring.service.board.BoardService;
+import com.example.spring.service.board.PagingService;
+import com.google.gson.Gson;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	PagingService pagingService;
 	
+	static int pagepageCount = 5; //한페이지에 보이는 페이징 수
+	static int pageboardCount = 10; //한 페이지에 보이는 게시글 수
 	
-	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	
 	@RequestMapping(value="/boardInsert.do")
@@ -46,14 +51,28 @@ public class BoardController {
 	}
 	
 	
-
+	/*
+	 *  리스트에 페이징 처리 추가!!
+	 */
+		
 	@RequestMapping(value="/boardList.do")
 	public @ResponseBody ModelAndView boardList(HttpServletRequest request){
 		
-		List<HashMap<String,Object>> list = boardService.boardList();
 		
+		List<HashMap<String,Object>> list = boardService.boardList();
+		Gson gson = new Gson();
+		String listJson = gson.toJson(list);
+		String curPage = request.getParameter("curPage");
+		
+		if(curPage==null) {
+			curPage = "1";
+		}
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", list);
+		
+		
+		
+		mv.addObject("list", listJson);
+		mv.addObject("curPage", curPage);
 		mv.setViewName("board/boardList");
 		
 		return mv;
@@ -61,7 +80,7 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/boardSearch.do")
-	public @ResponseBody List<HashMap<String,Object>> boardSearch(HttpServletRequest request){
+	public @ResponseBody ModelAndView boardSearch(HttpServletRequest request){
 		
 		HashMap<String,String> map = new HashMap<String,String>();
 		
@@ -71,7 +90,22 @@ public class BoardController {
 		
 		List<HashMap<String,Object>> list = boardService.boardSearch(map);
 		
-		return list;
+		Gson gson = new Gson();
+		String listJson = gson.toJson(list);
+		String curPage = request.getParameter("curPage");
+		
+		if(curPage==null) {
+			curPage = "1";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", listJson);
+		mv.addObject("curPage", curPage);
+		mv.setViewName("board/boardList");
+
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/boardDetail.do")
@@ -86,6 +120,7 @@ public class BoardController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("board", list);
+		mv.addObject("curPage", request.getParameter("curPage"));
 		mv.setViewName("board/boardDetail");
 		
 		return mv;

@@ -17,7 +17,7 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 
-	private static final Logger logger = LoggerFactory.getLogger(SampleService.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
 
 	
 	/*
@@ -70,6 +70,21 @@ public class BoardService {
 	public int boardDelete(HashMap<String,String> map){
 		return boardDao.boardDelete(map);
 	}
+	
+	/*
+	 * 글 전체 개수 가져오기
+	 */
+	public int boardCount(){
+		return boardDao.boardCount();
+	}
+	
+	/*
+	 * 글 검색에 따른 개수 가져오기
+	 */
+	public int boardSearchCount(HashMap<String,String> map){
+		return boardDao.boardSearchCount(map);
+	}
+	
 	
 }
 
