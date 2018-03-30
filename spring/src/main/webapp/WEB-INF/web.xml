@@ -18,14 +18,77 @@
      <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
      <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context2.xml</param-value> -->
      <!-- <param-value>/WEB-INF/spring/appServlet/servlet-context3.xml</param-value> -->
-     <param-value>/WEB-INF/spring/appServlet/servlet-context4.xml</param-value>
-     <!--   <param-value>/WEB-INF/spring/appServlet/servlet-context5.xml</param-value> -->
+    <!--  <param-value>/WEB-INF/spring/appServlet/servlet-context4.xml</param-value> -->
+       <param-value>/WEB-INF/spring/appServlet/servlet-context5.xml</param-value>
       
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  
+	 <!--  
+	  필터를 쓰려면 여기에 적어줘야함
+	 인터셉터는 제외할 수 있는 클래스가 있었는데 
+	 필터는 제외할 수 있는게 없음
+	   -->
+  <filter>
+  	<filter-name>commonFilter</filter-name>
+  	<filter-class>com.example.spring.common.CommonFilter</filter-class>
+  </filter>
+  
+  
+  <filter-mapping>
+	  <filter-name>commonFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
+  <!-- 한글설정해주는 필터는 스프링 자체에서 제공해주는 클래스가 있음 -->
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 한글설정 END -->
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </web-app>

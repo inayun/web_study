@@ -8,10 +8,8 @@
 <body>
 
 
-lecture06 입니당
+에러메시지 : ${content}
 
-${id }<br>
-${interceptorSendValue}<br>
-${filterInputValue}<br>
+
 </body>
 </html>

@@ -19,14 +19,15 @@ public class Lecture06Controller {
 		
 		logger.info("lecture06.do controller 들옴");
 		String id = request.getParameter("id");
+		
 		model.addAttribute("id",id);
 		model.addAttribute(request.getAttribute("interceptorSendValue"));
 		
-		
+		/*
 		if(1 != 2) {
 			throw new RuntimeException("에러 메시지 내용 ~~~~~~");
 		}
-		
+		*/
 		return "/lecture06/lecture06";
 		
 	}

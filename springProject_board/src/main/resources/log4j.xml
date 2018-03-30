@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	
+	<!-- value 값에 파일을 설정하면 로그를 파일로 기록해둘수 있음  system.out이라고 되잇는건 그냥 휘발성으로 출력만 -->
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="com.example.spring">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Query Loggers -->
+
+    <logger name="jdbc.sqlonly" additivity="false">  
+        <level value="debug"/>  
+        <appender-ref ref="console"/>  
+    </logger>
+
+    <logger name="jdbc.resultsettable" additivity="false">  
+        <level value="debug"/>  
+        <appender-ref ref="console"/>  
+    </logger>
+    <!-- Query Loggers  End-->
+
+
+
+
+
+
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>

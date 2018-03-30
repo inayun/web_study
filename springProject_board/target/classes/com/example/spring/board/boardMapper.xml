@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<insert id="boardInsert" parameterType="HashMap" >
+	
+		INSERT INTO BOARD
+		(board_num,board_title,board_content,create_writer,update_writer)
+		VALUES
+		(board_num_seq.nextval,#{boardTitle},#{boardContent},#{createWriter},#{updateWriter})
+	
+	</insert>
+
+
+	<select id="boardCount" resultType="Integer">
+		SELECT
+				COUNT(*) AS CNT							
+		FROM    BOARD        								
+		WHERE DEL_YN='n'
+	</select>
+	
+
+	<select id="boardList" resultType="HashMap">
+	
+		SELECT 
+		BOARD_NUM AS boardNum,
+		BOARD_TITLE AS boardTitle,
+		BOARD_CONTENT AS boardContent,
+		BOARD_CLICK AS boardClick,
+		CREATE_DATE AS createDate,
+		CREATE_WRITER AS createWriter,
+		UPDATE_DATE AS updateDate,
+		UPDATE_WRITER AS updateWriter,
+		DEL_YN AS delYN
+		FROM BOARD
+		WHERE DEL_YN='n'
+		ORDER BY BOARD_NUM DESC
+	
+	</select>
+	
+	
+	<select id="boardSearch" parameterType="HashMap" resultType="HashMap">
+	
+		SELECT 
+		BOARD_NUM AS boardNum,
+		BOARD_TITLE AS boardTitle,
+		BOARD_CONTENT AS boardContent,
+		BOARD_CLICK AS boardClick,
+		CREATE_DATE AS createDate,
+		CREATE_WRITER AS createWriter,
+		UPDATE_DATE AS updateDate,
+		UPDATE_WRITER AS updateWriter,
+		DEL_YN AS delYN
+		FROM BOARD
+		
+		<choose>
+			<when test="searchScope=='title'">
+				WHERE BOARD_TITLE LIKE #{searchInput} AND DEL_YN='n' 
+			</when>
+			
+			<when test="searchScope=='writer'">
+				WHERE CREATE_WRITER LIKE #{searchInput} AND DEL_YN='n' 
+			</when>
+		</choose>
+	
+		ORDER BY BOARD_NUM DESC
+	</select>
+	
+	
+	
+	
+	<select id="boardSearchCount" parameterType="HashMap" resultType= "Integer">
+	
+		SELECT 
+		COUNT(*) AS CNT
+		FROM BOARD
+		
+		<choose>
+			<when test="searchScope=='title'">
+				WHERE BOARD_TITLE LIKE #{searchInput} AND DEL_YN='n'
+			</when>
+			
+			<when test="searchScope=='writer'">
+				WHERE CREATE_WRITER LIKE #{searchInput} AND DEL_YN='n'
+			</when>
+		</choose>
+	
+	</select>
+	
+	
+		<select id="boardDetail" parameterType="HashMap" resultType="HashMap">
+	
+		SELECT 
+		BOARD_NUM AS boardNum,
+		BOARD_TITLE AS boardTitle,
+		BOARD_CONTENT AS boardContent,
+		BOARD_CLICK AS boardClick,
+		CREATE_DATE AS createDate,
+		CREATE_WRITER AS createWriter,
+		UPDATE_DATE AS updateDate,
+		UPDATE_WRITER AS updateWriter,
+		DEL_YN AS delYN
+		FROM BOARD
+		WHERE BOARD_NUM = #{boardNum} AND DEL_YN='n'
+	
+	</select>
+	
+	
+	<update id="boardUpdate" parameterType="HashMap">
+	
+		UPDATE BOARD
+		SET
+			BOARD_TITLE = #{boardTitle},
+			BOARD_CONTENT = #{boardContent},
+			UPDATE_WRITER = #{updateWriter}
+		WHERE BOARD_NUM = #{boardNum} AND DEL_YN='n'
+	
+	</update>
+	
+
+	<update id="boardUpdateClick" parameterType="HashMap">
+	
+		UPDATE BOARD
+		SET
+			BOARD_CLICK = BOARD_CLICK+1
+		WHERE BOARD_NUM = #{boardNum} AND DEL_YN='n'
+	
+	</update>
+	
+	<update id="boardDelete" parameterType="HashMap">
+	
+		UPDATE BOARD
+		SET
+			DEL_YN = 'y'
+		WHERE BOARD_NUM = #{boardNum}
+	
+	</update>
+
+
+
+</mapper>
