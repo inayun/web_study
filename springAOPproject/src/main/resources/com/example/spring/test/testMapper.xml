@@ -1,0 +1,86 @@
+<!--?xml version="1.0" encoding="UTF-8"? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="test">
+	<select id="testList" parameterType="HashMap" resultType="HashMap">
+		<!-- /test/testMapper.xml - testList ( 테스트 조회 ) -->
+		SELECT
+				DEPTNO AS deptNo                               <!--  부서코드  -->
+				,DNAME AS dName                                <!-- DNAME_ID -->
+				,LOC AS loc                                    <!--  LOC  -->
+		FROM    DEPT        <!--   DEPT Table  -->
+		WHERE DEPTNO = #{deptNo}
+	
+	<!-- 조건에 그냥 deptNo 이라고 적어도 키값인줄 앎 #{} 안써도-->
+<!-- 	<if test = 'deptNo != null and deptNo !="" '>
+			WHERE DEPTNO = #{deptNo}
+	</if>
+	 -->
+	<!-- $러 대신 #을 쓸것!! ###########  -->
+	<!-- 
+	<choose>
+		<when test="deptNo == '10'">
+			WHERE DEPTNO = 10		
+		</when>
+		<when test="deptNo == '20'">
+			WHERE DEPTNO = 20	
+		</when>
+		<otherwise>
+			WHERE DEPTNO = 30
+		</otherwise>
+	
+	</choose>
+	 -->
+	
+	</select>
+	
+	<select id="testVOList" parameterType="HashMap" resultType="HashMap">
+		<!-- /test/testMapper.xml - testVOList ( 테스트 조회 ) -->
+		SELECT
+				DEPTNO AS deptNo                               <!--  부서코드  -->
+				,DNAME AS dName                                <!-- DNAME_ID -->
+				,LOC AS loc                                    <!--  LOC  -->
+		FROM    DEPT        <!--   DEPT Table  -->
+	
+	<if test = 'deptNo != null and deptNo !="" '>
+			WHERE DEPTNO = #{deptNo}
+	</if>
+	</select>
+	
+	<select id="testCount" parameterType="HashMap" resultType="Integer">
+		<!-- /test/testMapper.xml - testCount ( 테스트 Count 조회 ) -->
+		SELECT
+				COUNT(*) AS CNT							<!-- 데이터 개수 조회 -->
+		FROM    EMP        								<!--   EMP Table  -->
+		WHERE DEPTNO = #{deptNo}
+	</select>
+	
+	
+	
+	<insert id="testInsert" parameterType="HashMap">
+	
+		INSERT INTO DEPT
+		(DEPTNO, DNAME, LOC)VALUES(#{deptNo},#{dName},#{loc})
+	
+	</insert>
+	
+	<update id="testUpdate" parameterType="HashMap">
+		UPDATE DEPT
+		SET 
+			DNAME = #{dName},
+			LOC = #{loc}
+		WHERE DEPTNO = #{deptNo}
+	</update>
+	
+	<delete id="testDelete" parameterType="HashMap">
+		DELETE
+		FROM DEPT
+		WHERE DEPTNO = #{deptNo}
+	
+	</delete>
+	
+	
+	
+	
+</mapper>

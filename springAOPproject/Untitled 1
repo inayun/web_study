@@ -1,0 +1,22 @@
+AOP [ 관점지향 프로그래밍 : Aspect Oriented Programming ]
+핵심사항이랑 외적인사항을 분리하자
+핵심사항(주요로직) + 기타로직(공통관심로직 : 로그....)
+
+핵심사항 ( core / primary concern ) : 비즈니스 로직
+공통관심사항[기타사항] (cross-cutting)횡단관심사항 : 부가적인 기능(로깅, 로그인 체크..등등) 
+
+code(비즈니스로직) : 핵심사항 로직
+Advice : 공통관심사항 로직
+
+JoinPoint : code와 Advice 연결해주는 정보, Advice가 적용되는 지점(포인트)
+point-cut : JoinPoint의 부분집합. 실제로 Advice가 적용되는 jointPoint
+Weaving : code, Advice, Point-cut 사용하여 어플리케이션 구성과정
+
+
+스프링 내장 AOP
+	- 필드(속성)값 변경과 같은 JointPoint는 사용불가 (따로 지원해주는 오픈 APi:  Aspect J )
+	- 함수호출 Joinpoint만! 지원
+	- 프록시 방법
+	
+클라이언트(호출) -------> 'proxy'(대행) --------> Target(핵심기능)
+	

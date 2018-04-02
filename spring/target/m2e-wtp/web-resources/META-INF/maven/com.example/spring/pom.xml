@@ -110,6 +110,7 @@
 		</dependency>
 		
 		
+		<!-- 새롭게 추가한 것들 -->
 		
 		<!-- Gson -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -183,6 +184,8 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 				
+			
+		<!-- 여기까지 -->	
 			
 		<!-- Test -->
 		<dependency>
