@@ -37,7 +37,9 @@ public class AdviceLog {
 		
 	}
 	
-	@Before("within(com.example.spring..service..*)")
+	/*@Before("within(com.example.spring..service..*)")*/
+	@Before("execution (* com.example.spring.service.*Service.le*(..)) ")
+	
 	public void before(JoinPoint joinPoint) {
 		
 		Signature method = joinPoint.getSignature(); //함수정보
@@ -58,6 +60,67 @@ public class AdviceLog {
 		}
 		
 	}
+	
+	
+/*	
+	execution
+
+	* : 모든 것
+	.. : 0개 이상
+
+	execution( "[접근지정자][리턴타입][적용클래스명][적용함수명](파라미터)")
+	접근지정자(생략가능) : public protected private
+
+	*/
+	//execution 을 쓰면 세세하게 접근이 가능함
+	//@Before("execution (* com.example.spring.service.*Service.le*(..)) ");
+	
+	
+	
+	// com.example.spring 패키지와 하위 패키지 모든 함수에서 적용될 수 있게 execution 처리
+/*	@Before("execution (* com.example.spring..*.*(..) ");*/
+	
+	
+	/*
+	
+
+
+	//lecture07Sample 함수를 실행하는 execution 처리
+	execution("void com.example.spring.service.lecture07Sample(..)")
+	execution("* lecture*(..)")
+	execution("* lec(*)" )
+
+
+	//파라미터 2개 받는데 첫번째 파라미터 타입은 String인 경우
+	execution("* lec*(String, *)")
+
+	//파라미터는 1개 이상이고 첫번째 파라미터 타입은 String인 경우
+	execution("* lec*(String, ..)")
+	
+	//2개 이상
+	 execution(" * lec*(String, *, ..)")
+	 
+	
+	
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
