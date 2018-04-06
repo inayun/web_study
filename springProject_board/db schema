@@ -1,0 +1,14 @@
+
+CREATE TABLE BOARD
+(
+    board_num           NUMBER(3) PRIMARY KEY,
+    board_title         VARCHAR2(300) NOT NULL,
+    board_content       VARCHAR2(400) NOT NULL,
+    board_click         NUMBER(5),
+    create_date         VARCHAR2(14) NOT NULL,
+    create_writer       VARCHAR2(100) NOT NULL,
+    update_date         VARCHAR2(14),
+    update_writer       VARCHAR2(100)
+
+
+)
