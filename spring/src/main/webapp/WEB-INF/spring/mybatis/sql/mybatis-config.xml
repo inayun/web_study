@@ -24,6 +24,7 @@
 		
 		<mapper resource="com/example/spring/test/testMapper.xml"/>
 		<mapper resource="com/example/spring/board/boardMapper.xml"/>
+		<mapper resource="com/example/spring/lecture08/lecture08Mapper.xml"/>
 		<!-- 여기에 여러개 넣음 -->
 	
 	</mappers>
